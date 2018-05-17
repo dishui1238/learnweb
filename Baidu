@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>baidu</title>
+</head>
+<body>
+	<div align="center"><img src="imgs/logo_baidu.jpg" alt="百度"></div>
+	<h3 align="center">添加注册信息</h3>
+	<form action="" method="post">
+	<table width="600" align="center" cellspacing="16">
+		<tr>
+			<td align="right">邮箱</td>
+			<td><input type="text"></td>
+		</tr>
+		<tr>
+			<td align="right">密码</td>
+			<td><input type="password"></td>
+		</tr>
+		<tr>
+			<td align="right">确认密码</td>
+			<td><input type="password"></td>
+		</tr>
+		<tr>
+			<td align="right">验证码</td>
+			
+			<td>
+			<table>
+			<tr>
+			<td><input type="text"></td>
+				<td><img src="imgs/yz.jpg"></td>
+				<td><a href="#">注册用户</a></td>
+			</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="checkbox" checked="checked">我已阅读并接受<a href="#">《百度用户协议》</a></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+			<table width="80%">
+				<td><img src="imgs/button.jpg"></td>
+				<td><input type="reset" value="重新填写"></td>
+			</table>
+			</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
