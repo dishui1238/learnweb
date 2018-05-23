@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿土豆显示透明盒子</title>
+	<style>
+		a {
+			width: 448px;
+			height: 252px;
+			margin: 100px;
+			display: block;   /*将a转换为块级元素！！*/
+			position: relative;
+		}
+		.mask {
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, .4) url(imgs/arr.png) no-repeat center; /*!!*/
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		a:hover .mask {     /*鼠标经过a时里面的mask显示出来！！！*/
+			display: block;
+		}
+	</style>
+
+</head>
+<body>
+	<a href="#">
+		<img src="imgs/tudou.jpg">
+		<div class="mask"></div>
+	</a>
+</body>
+</html>
