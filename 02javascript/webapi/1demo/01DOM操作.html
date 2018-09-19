@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="显示效果" id="btn"/>
+<p id="p">一重山，两重山，山远天高烟水寒，相思枫叶丹。</p>
+<a href="http://www.baidu.com" id="a">百度</a>
+<div id="div1">
+    <p>山一程，水一程，身向榆关那畔行，夜深千帐灯。</p>
+    <p>山一程，水一程，身向榆关那畔行，夜深千帐灯。</p>
+    <p>山一程，水一程，身向榆关那畔行，夜深千帐灯。</p>
+    <p>山一程，水一程，身向榆关那畔行，夜深千帐灯。</p>
+</div>
+<div id="div2">
+    <p>风一更，雪一更，聒碎乡心梦不成，故园无此声。</p>
+    <p>风一更，雪一更，聒碎乡心梦不成，故园无此声。</p>
+    <p>风一更，雪一更，聒碎乡心梦不成，故园无此声。</p>
+    <p>风一更，雪一更，聒碎乡心梦不成，故园无此声。</p>
+</div>
+
+
+<script>
+    document.getElementById("btn").onclick = function () {
+        alert("哈哈");
+    };
+    //点击按钮显示图片，及设置图片宽高
+
+    //点击按钮设置p标签的内容
+    document.getElementById("btn").onclick = function () {
+        document.getElementById("p").innerText = "菊花开，菊花残，塞雁高飞人未还，一帘风月闲。";
+    };
+    //点击修改a标签的地址和热点文字
+    document.getElementById("btn").onclick = function () {
+        var a = document.getElementById("a");
+        a.href = "https://www.icourse163.org/";
+        a.text = "慕课网";
+    };
+
+    //点击设置div1中所有的p标签
+    //    /*document.getElementById("btn").onclick=function () {
+    //        var pObjs=document.getElementsByTagName("p"); 返回值为伪数组
+    //        console.log(pObjs);
+    //    };*/  设置所有的p标签
+
+    //根据id获取按钮，注册点击事件，添加事件处理函数
+    document.getElementById("btn").onclick = function () {
+        //根据标签名字获取标签
+        var pObjs = document.getElementById("div1").getElementsByTagName("p");//返回一个伪数组
+        //循环遍历该数组，设置p标签内容
+        for (var i = 0; i < pObjs.length; i++) {
+            pObjs[i].innerText = "风一更，雪一更，聒碎乡心梦不成，故园无此声。";
+        }
+    };
+
+
+</script>
+</body>
+</html>

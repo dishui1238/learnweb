@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, ul, ol, li, img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 520px;
+            height: 280px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+
+        .ad {
+            width: 520px;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box img {
+            width: 520px;
+        }
+
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .ad ol li {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background: #fff;
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+            _display: inline;
+        }
+
+        .ad ol li.current {
+            background: yellow;
+        }
+
+        .ad ul li {
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+
+        .ad ul li.current {
+            display: block;
+        }
+
+        #focusD {
+            display: none;
+        }
+
+        #focusD span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            /*font-family: '微软雅黑';*/
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #focusD #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="all">
+    <div class="ad">
+        <ul id="imgs">
+            <li><img src="images/01.jpg"/></li>
+            <li><img src="images/02.jpg"/></li>
+            <li><img src="images/03.jpg"/></li>
+            <li><img src="images/04.jpg"/></li>
+            <li><img src="images/05.jpg"/></li>
+        </ul>
+    </div>
+    <!--相框-->
+    <div id="focusD">
+        <span id="left">&lt;</span>
+        <span id="right">&gt;</span>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+    var box = my$("box");
+    //获取相框
+    var ad = box.children[0];
+    var imgWidth = ad.offsetWidth;//相框宽度
+    //获取ul
+    var ulObj = ad.children[0];
+    //获取左右焦点div
+    var focusD = my$("focusD");
+    //为box注册鼠标进入事件
+    box.onmouseover = function () {
+        focusD.style.display = "block";
+    };
+    //为box注册鼠标离开事件
+    box.onmouseout = function () {
+        focusD.style.display = "none";
+    };
+    //为右侧焦点注册点击事件
+    var index = 0;
+    my$("right").onclick = function () {
+        if (index < ulObj.children.length - 1) {
+            index++;
+            animate(ulObj, -index * imgWidth);
+        }
+    };
+    //为左侧焦点注册点击事件
+    my$("left").onclick = function () {
+        if (index > 0) {
+            index--;
+            animate(ulObj, -index * imgWidth);
+        }
+    };
+    function animate(element, target) {
+        //先清理定时器，使其只产生一个定时器
+        clearInterval(element.timeId);
+        //获取当前位置，为数值型
+        var current = element.offsetLeft;
+        element.timeId = setInterval(function () {
+            //每次走的像素
+            var step = 9;
+            step = current < target ? step : -step;
+            current += step;
+            if (Math.abs(current - target) > Math.abs(step)) {
+                element.style.left = current + "px";
+            } else {
+                clearInterval(element.timeId);
+                element.style.left = target + "px";
+            }
+        }, 1);
+    }
+</script>
+</body>
+</html>

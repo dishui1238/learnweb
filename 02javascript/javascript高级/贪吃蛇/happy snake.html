@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 600px;
+            background-color: #cccccc;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map"></div>
+    <script src="food.js"></script>
+    <script src="snake.js"></script>
+    <script src="game.js"></script>
+    <script>
+        //================产生随机对象============================================================
+        // (function (window) {
+        //     function Random() {
+        //     }
+        //     //为Random添加原型对象
+        //     Random.prototype.getRandom = function (min, max) {
+        //         return Math.floor(Math.random() * (max - min) + min);//产生max~min的随机数
+        //     };
+        //     //把局部变量暴露给window顶级对象，就成了全局变量
+        //     window.Random = new Random();
+        // })(window);
+        //测试代码
+        // console.log(Random.getRandom(0,100));
+
+    
+        
+
+        
+
+
+        //===========================测试代码===================================================================================
+        // var fd = new Food();
+        // // doocument.querySelector()--表示文档中与指定的一组CSS选择器匹配的第一个元素的Element对象。
+        // // 如果需要与指定选择器匹配的所有元素的列表，则应该使用querySelectorAll() 
+        // fd.init(document.querySelector(".map"));
+        // // console.log(fd.x + "=========" + fd.y);
+        // var snake = new Snake();
+        // snake.init(document.querySelector(".map"));
+        // setInterval(function () {
+        //     snake.move(document.querySelector(".map"), fd);//走一步
+        //     snake.init(document.querySelector(".map"));//初始化
+        // }, 150)
+        // document.onkeydown = function (e) {
+        //     console.log(e.keyCode);//left--37   top--38  right--39  bottom--40
+        // };
+
+    </script>
+</body>
+
+</html>

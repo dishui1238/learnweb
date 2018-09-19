@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //创建一个电脑对象，有颜色、重量、品牌、型号，可以看电影、打游戏、敲代码
+
+    //工厂模式创建对象
+    function createComputerObject(color, weigh, label, type) {
+        var obj = new Object(); //创建对象
+        obj.color = color;
+        obj.weigh = weigh;
+        obj.label = label;
+        obj.type = type;
+        obj.behavior = function () {
+            console.log("电脑" + this.color + this.weigh + this.label + this.type + "可以打游戏、看电影、敲代码");
+        };
+        return obj;
+    }
+    var obj1 = createComputerObject("red", "2kg", "Dell", "AMD");
+    obj1.behavior();
+
+    //自定义构造函数创建对象
+    //    function ComputerObject(color, weigh, label, type) {
+    //        this.color=color;
+    //        this.weigh=weigh;
+    //        this.label=label;
+    //        this.type=type;
+    //        this.behavior=function () {
+    //            console.log("电脑" + this.color + this.weigh + this.label + this.type + "可以打游戏、看电影、敲代码");
+    //        }
+    //    }
+    //    var obj=new ComputerObject("红色","2kg","Dell","AMD");
+    //    obj.behavior();
+    function Computer(color, weigh, label, type) {
+        this.color = color;
+        this.weigh = weigh;
+        this.label = label;
+        this.type = type;
+        this.behavior = function () {
+            console.log("电脑" + this.color + this.weigh + this.label + this.type + "看电影，打游戏，敲代码");
+        };
+    }
+    var obj = new Computer("red", "2kg", "Dell", "AMD");
+    obj.behavior();
+
+    //字面量方式创建对象
+    //    var object={
+    //       color:"红色",
+    //        weigh:"2kg",
+    //        label:"Dell",
+    //        type:"AMD",
+    //        behaviour:function () {
+    //            console.log("电脑" + this.color + this.weigh + this.label + this.type + "可以打游戏、看电影、敲代码");
+    //         }
+    //    };
+    //    object.behaviour();
+
+    var object = {
+        color: "red",
+        weigh: "2kg",
+        label: "Dell",
+        type: "AMD",
+        behaviour: function () {
+            console.log("电脑" + this.color + this.weigh + this.label + this.type + "可以打游戏、看电影、敲代码");
+        }
+    };
+    object.behaviour();
+
+    //创建一个车的对象，有重量、颜色、牌子，可以拉货、载人
+    //工厂模式创建对象
+    function createCar(weigh, color, label) {
+        var obj2 = new Object();
+        obj2.weigh = weigh;
+        obj2.color = color;
+        obj2.label = label;
+        obj2.behavior = function () {
+            console.log(this.weigh + this.color + this.label + "拉人、载货");
+        };
+        return obj2;
+    }
+    var car = createCar("20kg", "黑色", "宝马");
+    car.behavior();
+    //自定义构造函数创建对象
+    function CarObject(weigh, color, label) {
+        this.weigh = weigh;
+        this.color = color;
+        this.label = label;
+        this.behavior = function () {
+            console.log(this.weigh + this.color + this.label + "拉人、载货");
+        }
+    }
+    var car = new CarObject("20kg", "black", "奔驰");
+    car.behavior();
+    //字面量方式创建对象
+    var object = {
+        weigh: "100kg",
+        color: "red",
+        label: "BWM",
+        behavior: function () {
+            console.log(this.weigh + this.color + this.label + "拉人、载货");
+        }
+    };
+    object.behavior();
+
+    //创建一个按钮对象，宽、高、背景色，可以点击，有鼠标进入的行为
+    //工厂模式创建对象
+    function createButton(height, width, bgColor) {
+        var object = new Object();        //!!!!Object首字母大写
+        object.height = height;           //不能用this
+        object.width = width;
+        object.bgColor = bgColor;
+        object.behavior = function () {
+            console.log("你点击了，鼠标进入了" + this.height + this.width + this.bgColor);
+        };
+        return object;
+    }
+    var button = createButton(20, 30, "red");
+    button.behavior();
+
+    //自定义构造函数创建对象
+    function ButtonObject(height, width, bgColor) {
+        this.height = height;
+        this.width = width;
+        this.bgColor = bgColor;
+        this.behavior = function () {
+            console.log("你点击了，鼠标进入了" + this.height + this.width + this.bgColor);
+        };
+    }
+    var obj = new ButtonObject(30, 90, "green");
+    obj.behavior();
+    //字面量方式创建对象
+    var obj = {
+        height: 40,
+        width: 60,
+        bgColor: "blue",
+        behavior: function () {
+            console.log("你点击了，鼠标进入了" + this.height + this.width + this.bgColor);
+        }
+    };
+    obj.behavior();
+</script>
+</body>
+</html>

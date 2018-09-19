@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1、求两个数中的最大值
+    function getMax(x, y) {
+        return x > y ? x : y;
+    }
+    console.log(getMax(10, 20));
+    var x = 10;   //函数外面的x,y和函数形参x,y不是同一变量
+    var y = 20;
+    console.log(getMax(x, y));
+    //3、求三个数中的最大值
+    function getThreeMax(x, y, z) {
+        return x > y ? (x > z ? x : z) : (y > z ? y : z);
+    }
+    console.log(getThreeMax(10, 20, 30));
+    //4、判断一个数是否是素数
+    //var number=parseInt(prompt("请输入一个数："));
+    function isPrimeNumber(x) {
+        for (var i = 2; i < x; i++) {
+            if (x % i == 0) {
+                return false;//遇到return后面的代码不执行
+                //break;
+            }
+            return true;
+        }
+    }
+    isPrimeNumber(12);
+    //5、求一组数字中的最大值
+    function getArrayMax(array) {
+        var max = array[0];
+        for (var i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i]
+            }
+        }
+        return max;
+    }
+    /* var arr=[10,23,122,5,65,76];
+     var max=getArrayMax(arr);
+     console.log(max);*/
+    console.log(getArrayMax([10, 23, 122, 5, 665, 76]));
+    //6、求一组数字的和
+    var sum = 0;
+    function getArraySum(array) {
+        for (var i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+    console.log(getArraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+    //7、求一个数组中的最大值最小值还有和
+    /**直接回车
+     * 给我一个数组，我返回一个数组[最大值，最小值，和]
+     * @param array 参数是一个数组
+     * @returns {*[]} 返回值是一个数组，[最大值，最小值，和]
+     */
+    function getArrayMaxAndMinAndSum(array) {
+        var max = array[0];
+        var min = array[0];
+        var sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            sum += array[i];
+            if (max < array[i]) {
+                max = array[i];
+            }//end if
+            if (min > array[i]) {
+                min = array[i];
+            }//end if
+        }//end for
+        var arr = [max, min, sum];
+        return arr;
+    }
+    //测试
+    console.log(getArrayMaxAndMinAndSum([1, 2, 3, 4, 5]));
+    //8、斐波那契数列,后一个数为前两个数之和
+    function getFib(x) {
+        var x1 = 1;
+        var x2 = 1;
+        var sum = 0;
+        for (i = 3; i <= x; i++) {
+            sum = x1 + x2;
+            x1 = x2;
+            x2 = sum;
+        }
+        return sum;
+    }
+    console.log(getFib(12));
+    //9、输入年、月、日，计算是这一年的第多少天
+    function getDays(year, month, day) {
+        var days = day;
+        //如果用户输入一月份，直接返回日期
+        if (month == 1) {
+            return days;
+        }
+        var arrMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        for (i = 0; i < month - 1; i++) {
+            days += arrMonth[i];
+        }
+        //判断是否是闰年
+        if (month > 2 && year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            days++;
+        }
+        return days;
+    }
+    console.log(getDays(2000, 3, 1));
+    //10、求一个数字的阶乘和
+    //求一个数的阶乘
+    function getJieCheng(num) {
+        var result=1;
+        for(i=1;i<=num;i++){
+            result*=i;
+        }
+        return result;
+    }
+    //求阶乘和
+    function getJieChengSum(num) {
+        var sum=0;
+        for(var i=1;i<=num;i++){
+            sum+=getJieCheng(i);
+        }
+        return sum;
+    }
+    console.log(getJieChengSum(5));
+</script>
+</body>
+</html>

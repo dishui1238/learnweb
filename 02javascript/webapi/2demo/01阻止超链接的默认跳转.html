@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://www.baidu.con" id="ak">百度</a>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    my$("ak").onclick = function () {
+        alert("该链接被阻止跳转了");
+        return false;
+    };
+</script>
+</body>
+</html>

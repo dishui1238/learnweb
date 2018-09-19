@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #pw {
+        padding-left: 2px;
+        height: 25px;
+        width: 250px;
+        line-height: 25px;
+        color: lightgray;
+    }
+</style>
+<body>
+<input type="text" value="请输入密码(至少包含一个字母)" id="pw">
+<p></p>
+
+<script>
+    //密码要求：8-16位长度，至少包含一个字母
+    //不符合要求，鼠标失去焦点时，提示“您输入的密码不符合要求"
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //获取文本框，注册获取焦点事件，添加注册函数
+    my$("pw").onfocus = function () {
+        //如果文本框内为默认值，则清空，并将type改为password
+        if (this.value == "请输入密码(至少包含一个字母)") {
+            this.value = "";
+            this.type = "password";
+            this.style.color = "black";
+        }
+    };
+    my$("pw").onblur = function () {
+        //如果文本框长度为0，则value恢复默认
+        if (this.value.length == 0) {
+            this.value = "请输入密码(至少包含一个字母)";
+            this.style.color = "lightgray";
+            this.type = "text";
+        }
+        //如果文本框内部位0，判断是否符合要求
+      /*  else if (this.value.length > 7 && this.value.length < 17) {
+            for (var i = 0; i < this.value.length; i++) {
+                var password = document.getElementById("pw").value;
+                if (typeof password[i] == "string" ) {
+                    console.log(i);
+                    return false;
+                }
+                else if (i == this.value.length) {
+                    alert("至少包含一个字母！");
+                }
+            }
+        }*/
+        else {
+            alert("您输入的位数不符合要求！");
+        }
+    }
+</script>
+</body>
+</html>

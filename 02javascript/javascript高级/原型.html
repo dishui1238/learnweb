@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age, sex, eat) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.eat = function () {
+                console.log("红烧肉，黄焖鸡，烤鱼");
+            };
+        }
+        //实例化对象
+        var per1 = new Person("小白", "20");
+        console.log(per1.eat());
+        var per2 = new Person("小黑", "22");
+        console.log(per2.eat());
+        console.log(per1.eat == per2.eat);//false,浪费内存空间
+        //显示数据结构
+        console.dir(per1);  //实例对象---------Person
+        console.dir(Person);    //构造函数的名字----------ƒ Person(name, age, sex, eat)
+
+        console.log(Person.prototype.constructor);//构造器
+        console.log(per1.__proto__.constructor);
+        
+
+        //  构造函数有一个prototype属性，是构造函数的原型对象，prototype中有一个constructor构造器，指向自己所在的原型对象所在的构造函数
+        // 实例对象的原型（__proto__）,指向该构造函数的原型对象
+        // 构造函数的原型对象（prototype）中的方法可以被实例对象直接访问
+    
+        
+        //=========原型----作用：数据共享，节省内存空间======================================
+        function Animal(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        //通过原型来添加方法
+        Animal.prototype.eat = function () {
+            console.log("红烧肉，黄焖鸡，烤鱼");
+        };
+        var Animal_1 = new Animal("dog", "2");
+        var Animal_2 = new Animal("cat", "2");
+        console.log(Animal_1.eat());
+        console.log(Animal_2.eat());
+        console.log(Animal_1.eat == Animal_2.eat);//true
+
+        //===========================局部变量变全局变量---把局部变量给window就可以了================================================
+        //自调用函数
+        (function(win){//win为形参
+            var num=10;
+            win.num=num;//js是一门动态类型的语言，对象没有该属性，点了就有了
+            console.log(num);
+        })(window);//window为实参，调用时实参赋给形参
+        console.log(num);
+    </script>
+</body>
+
+</html>

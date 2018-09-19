@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 450px;
+            margin: 60px auto;
+        }
+
+        #txt {
+            height: 30px;
+            width: 300px;
+            padding-left: 5px;
+        }
+
+        #btn {
+            height: 34px;
+            width: 45px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="txt"/>
+    <input type="button" value="搜索" id="btn">
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    var keywords = ["红酥手", "黄藤酒", "满城春色宫墙柳", "红外线", "黄脸婆", "满园春色关不住",
+        "东风恶", "一杯愁绪", "一枝红杏出墙来", "东风不识字","一二三四","红苹果乐园","红红火火"];
+    //获取文本框，注册键盘抬起事件
+    my$("txt").onkeyup = function () {
+        //==========解决bug========================================
+        //每一次键盘抬起，都检查是否有创建的div
+        if (my$("dv")) {
+            my$("box").removeChild(my$("dv"));
+        }
+        //===========================================================
+        //获取文本框输入的内容
+        var text = this.value;
+        var tempArr = [];//空数组，用来存放匹配的数组
+        //把输入的内容与数组对比，查看是否为最开始出现的
+        for (var i = 0; i < keywords.length; i++) {
+            if (keywords[i].indexOf(text) == 0) {
+                tempArr.push(keywords[i]);//追加
+            }
+        }
+        //如果文本框中没有内容，或者tempArr中没有匹配的值，那么不用创建div
+        if (this.value.length == 0 || tempArr.length == 0) {
+            //如果页面中有这个div，则删除
+            if (my$("dv")) {
+                my$("box").removeChild(my$("dv"));
+            }
+            return;
+        }
+        //创建div，并追加到id为box的div中
+        var divObj = document.createElement("div");
+        divObj.id = "dv";
+        my$("box").appendChild(divObj);
+        divObj.style.width = "300px";
+        divObj.style.border = "1px solid #000";
+        //循环遍历数组，创建对应的p标签
+        for (var j = 0; j < tempArr.length; j++) {
+            var pObj = document.createElement("p");
+            divObj.appendChild(pObj);
+            pObj.innerHTML = tempArr[j];
+            pObj.style.padding = 0;
+            pObj.style.margin = 0;
+            pObj.style.marginTop = "5px";
+            pObj.style.marginLeft = "5px";
+            pObj.style.fontSize="14px";
+            //高亮效果
+            pObj.onmousemove = function () {
+                this.style.backgroundColor = "#ccc";
+                this.style.cursor = "pointer";
+            };
+            pObj.onmouseout = function () {
+                this.style.backgroundColor = "";
+            }
+        }
+    };
+</script>
+</html>

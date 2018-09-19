@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap {
+        width: 300px;
+        margin: 100px auto 0;
+    }
+
+    table {
+        border: 1px solid #c0c0c0;
+        width: 300px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    th,
+    td {
+        border: 1px solid #d0d0d0;
+        color: #404060;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #0088cc;
+        font: bold 16px "微软雅黑";
+        color: #ffffff;
+    }
+
+    td {
+        font: 14px "微软雅黑";
+    }
+
+    tbody tr {
+        background-color: #f0f0f0;
+    }
+
+    tbody tr:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+    }
+</style>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="j_cbAll"></th>
+            <th>菜名</th>
+            <th>价格</th>
+        </tr>
+        </thead>
+        <tbody id="j_tb">
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>番茄鸡蛋</td>
+            <td class="price">12</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>牛肉火锅</td>
+            <td class="price">160</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>麻辣香锅</td>
+            <td class="price">150</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>十三香小龙虾</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>糖醋排骨</td>
+            <td class="price">36</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>红烧猪蹄</td>
+            <td class="price">88</td>
+        </tr>
+        <tr>
+            <td>合计</td>
+            <td colspan="2" id="sum"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="common.js"></script>
+<script>
+    //获取全选框
+    var selectAll = my$("j_cbAll");
+    //获取复选框
+    var select = my$("j_tb").getElementsByTagName("input");
+
+    //=======实现全选&全不选功能================================================
+    //为全选框注册点击事件，添加事件处理函数
+    selectAll.onclick = function () {
+        //遍历所有的input标签
+        for (var i = 0; i < select.length; i++) {
+            select[i].checked = this.checked;
+        }
+        //============计算勾选的总钱数========================================
+        //获取价格
+        var price=document.getElementsByClassName("price");
+        var total=0;
+        var input=document.getElementsByTagName("input");
+        //遍历，拿到内容
+        for(var k=0;k<price.length;k++){
+            //console.log(parseInt( price[k].innerHTML));
+            if (select[k].checked) {
+                total+=parseInt( price[k].innerHTML);
+            }
+            my$("sum").innerText=total;
+        }
+    };
+    //============实现当选择所有的菜时，全选框自动勾上==========================
+    //遍历tbody中的复选框，注册点击事件
+    for (var i = 0; i < select.length; i++) {
+        select[i].onclick = function () {
+            var flag = true;//默认都被选中
+            //被点击了，查看所有的复选框是否有没被选中的
+            for (var j = 0; j < select.length; j++) {
+                if (!select[j].checked) {
+                    //有没被选中的复选框
+                    flag = false;
+                    break;
+                }
+            }
+            selectAll.checked = flag;
+            //============计算勾选的总钱数========================================
+            //获取价格
+            var price=document.getElementsByClassName("price");
+            var total=0;
+            var input=document.getElementsByTagName("input");
+            //遍历，拿到内容
+            for(var k=0;k<price.length;k++){
+                //console.log(parseInt( price[k].innerHTML));
+                if (select[k].checked) {
+                    total+=parseInt( price[k].innerHTML);
+                }
+                my$("sum").innerText=total;
+            }
+        };
+    }
+
+</script>
+</body>
+</html>

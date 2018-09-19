@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num1 = 10;
+    var num2 = 10.13141518;
+    var nul = null;
+    var str = "加油！";
+    var str1 = "10";
+    var str2 = "come on!";
+    console.log(typeof(num1));      //number
+    console.log(typeof(nul));       //object
+    console.log(typeof str);        //string
+    console.log(str.length);        //3  算空格
+    console.log(str2.length);       //8
+    console.log(parseInt(str));     //NAN
+    console.log(parseInt(str1));    //10
+    console.log(parseInt(str2));    //NAN
+    /* console.log(isNAN(num1));
+     console.log(isNAN(nul));
+     console.log(isNAN(str));显示错误*/
+    console.log(parseFloat(num1));      //10
+    console.log(parseFloat(num2));      //10.13141518
+    console.log(parseFloat(str));       //NAN
+    console.log(parseFloat(str1));      //10
+    console.log(Number(num1));          //10
+    console.log(Number(num2));          //10.13141518
+    console.log(num2.toString());       //toString转换有意义的变量
+    console.log(String(nul));           //String可以转换没有意义的变量，未赋值的or null
+    console.log(String(num2));
+
+    var name = "青青";
+    var be = "要";
+    var str = "加油变优秀";
+    console.log(name + be + str + "\t" + "爱生活");
+</script>
+</body>
+</html>

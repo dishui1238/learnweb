@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //math 是一个静态对象，不需要创建
+    //实例方法必须通过实例对象调用
+    //静态方法必须通过大写法对象调用
+
+    console.log(Math.PI);   //静态对象
+    var arr = new Array();  //实例对象
+    //.abc方法——绝对值
+    console.log(Math.abs(-2));  //2
+    console.log(Math.abs(null));    //0
+    console.log(Math.abs("string"));    //NAN
+    //.ceil方法——向上取整
+    console.log(Math.ceil(12.98));  //13
+    console.log(Math.ceil(-12.98)); //-12
+    console.log(Math.ceil(0.98));   //1
+    //.floor方法——向下取整
+    console.log(Math.floor(12.98)); //12
+    console.log(Math.floor(-12.98));  //-13
+    console.log(Math.floor(0.98));  //0
+    //.max方法——最大值
+    console.log(Math.max(12,88,90,6));
+    //.min方法——最小值
+    console.log(Math.min(12,88,90,6));
+    //.pow方法——次方
+    console.log(Math.pow(12,2));
+    //.sqrt方法——开根号
+    console.log(Math.sqrt(144));
+    //.random方法——伪随机数，范围[0,1]
+    console.log(Math.random());
+    console.log(parseInt(Math.random()*100)+1);//1~100之间的额随机数
+</script>
+</body>
+</html>

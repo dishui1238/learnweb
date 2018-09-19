@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="images/1.jpg" id="ak"><img src="images/1-small.jpg" alt="" id="img"/></a>
+<input type="button" value="选中女" id="btn"/>
+<input type="radio" value="male" name="sex"/>男
+<input type="radio" value="female" name="sex" id="rad1"/>女
+<input type="radio" value="secret" name="sex"/>保密
+</body>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //点击图片更改图片的路径
+    //根据id获取标签，为图片注册点击事件，添加事件处理函数
+//    document.getElementById("img").onclick=function () {
+//        this.src=document.getElementById("ak").href;
+//        return false;
+//    }
+    my$("img").onclick=function () {
+        this.src=my$("ak").href;
+        return false;
+    };
+
+    my$("btn").onclick=function () {
+        my$("rad1").checked=true;   //使用布尔类型
+    };
+</script>
+</html>

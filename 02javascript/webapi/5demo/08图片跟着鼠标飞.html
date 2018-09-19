@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<img src="images/tianshi.gif" alt="" id="img"/>
+<script src="common.js"></script>
+<script>
+    document.onmousemove = function (e) {
+        my$("img").style.left = e.clientX+"px";
+        my$("img").style.top = e.clientY+"px";
+    };
+</script>
+</body>
+</html>

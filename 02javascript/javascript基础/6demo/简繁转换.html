@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //做一个数组
+    var arr = ["你-妳", "说-說", "我-莪", "好-恏", "看-看", "吗-嗎"];
+    var result = "";//对应的繁体
+    var str = prompt("请输入要转换的简体字：");
+    //创建一个空对象，用来放键（简体）值（繁体）对
+    var obj = {};
+    //遍历数组中每一个字符串的内容
+    for (var i = 0; i < arr.length; i++) {
+        //console.log(arr[i]);
+        var keyword = arr[i].split("-");
+        obj[keyword[0]] = keyword[1];
+    }
+    for (var i = 0; i < str.length; i++) {
+        if (obj[str[i]]) {
+            result += obj[str[i]];
+        } else {
+            result += str[i];
+        }
+    }
+    console.log(result);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //JSON格式的数据一般都是成对的，是键值对
+    //JSON数据实际上是格式化好了的字符串，便于传值
+
+    var json = {
+        "name": "小明",
+        "age": 20,
+        "sex": "男"
+    };
+    console.log(json.name);
+    console.log(json["name"]);
+    //遍历对象，用for-in循环
+    for(var key in json){
+        console.log(key+json[key]);//key装着属性的名字，json[key]装着属性值
+    }
+
+
+</script>
+</body>
+</html>

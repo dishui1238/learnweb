@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    *主要内容：三种方式创建对象、设置和获取属性的另一种方法
+    *
+    * js是一门什么样的语言？
+    * 是一门解释性语言（由浏览器解释执行）
+    * 是一门脚本语言（无需编译，直接执行）
+    * 是一门基于对象的语言
+    * 是一门弱类型的语言（声明变量用var）
+    * 是一门动态类型语言
+    * （①代码只有执行到这个位置的时候才知道其存储的是什么，
+    * 如果是对象，就有对象的属性和方法，如果是变量，就有变量作用
+    * ②可以用点语法为对象添加属性和方法）
+    *
+    * */
+    //1、工厂模式创建对象
+    function createObject(name, behavior) {
+        var obj = new Object();//创建对象
+        //添加属性
+        obj.name = name;
+        obj.behavior = behavior;
+        obj.f = function () {
+            console.log(this.name + this.behavior);
+        };
+        return obj;
+    }
+    //调用系统构造函数创建对象
+    var obj1 = createObject("时代", "娱乐至死");
+    obj1.f();
+
+    var obj2 = createObject("错错错", "莫莫莫");
+    obj2.f();
+
+    //2、自定义构造函数创建对象
+    /*
+     * ①在内存中申请一块空闲的空间，存储创建的对象
+     * ②把this创建为当前对象
+     * ③设置对象的属性和方法的值
+     * ④把this这个对象返回
+     *
+     * */
+    //    函数和构造函数的区别：后者首字母大写
+    function Person(name, age) {     //自定义构造函数
+        this.name = name;
+        this.age = age;
+        this.sayHi = function () {
+            console.log("我叫" + this.name + "今年" + this.age);
+        }
+    }
+    //调用Person函数
+    var obj = new Person("小明", 23);
+    obj.sayHi();
+    console.log(obj instanceof Person);//判断obj对象是否属于Person类型
+
+
+    //3、字面量的方式创建对象
+    var obj = {};//空对象
+    //通过点语法，为对象添加属性和方法
+    obj.name = "小鸟";
+    obj.age = 2;
+    obj.fly = function () {
+        console.log("飞吧");
+    };
+    obj.fly();
+
+    var object = {
+        name: "小白",  //属性后面用：多个属性后用，隔开
+        age: 20,
+        sayHi: function () {
+            console.log("我叫" + this.name + this.age + "岁了");
+        }
+    };
+    //调用
+    object.sayHi();
+
+    //4、设置和获取属性的另一种方法：点可以换为["属性名"]
+    var obj = {};//空对象
+    //通过点语法，为对象添加属性和方法
+    obj["name"] = "小鸟";
+    obj.age = 2;
+    obj.fly = function () {
+        console.log("飞吧");
+    };
+    console.log(obj["name"]);
+    console.log(obj.name);
+    obj.fly();
+    obj["fly"]();
+</script>
+</body>
+</html>

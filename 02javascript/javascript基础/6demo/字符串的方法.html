@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str="Crystal|come|on!";
+    console.log(str.charAt(5));//返回一个字符
+
+    console.log(String.fromCharCode(65,97,66));//返回指定的ASCII值
+    console.log(str.concat("I","believe","you can fly"));//字符串拼接
+    console.log(str.slice(0,3));//提取一个新的字符串并返回，[0,3)
+    console.log(str.split("|"));//切割字符串,按|切割成3个数组
+    console.log(str.split("|",2));//保留前2个数组
+    console.log(str.substr(0,8));//从第0个字符开始，截取8个
+    console.log(str.substring(8,12));//截取从第8-12个字符
+    console.log(str.indexOf("on"));//查找该字符的索引，若有重复的字符，只返回第一个
+    console.log(str.lastIndexOf("on"));//从后向前查找该字符索引
+    console.log(str.replace("Crystal","dishui1238"));//后面的替换掉前面的
+    console.log(str.toLocaleLowerCase());//转换小写
+    console.log(str.toLowerCase());//转换小写
+    console.log(str.toLocaleUpperCase());//转换大写
+    console.log(str.toUpperCase());//转换大写
+    console.log(str.trim());//切掉字符串两端的空格
+
+
+</script>
+</body>
+</html>

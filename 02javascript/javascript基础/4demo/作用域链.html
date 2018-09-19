@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num=10; //0级作用域
+    function f1() {
+        var num=20; //1及作用域
+        function f2() {
+            var num=30; //2级作用域
+            function f3() {
+                var num=40;     //3级作用域
+                console.log(num);
+            }
+            f3();
+        }
+        f2();
+    }
+    f1();
+
+    //预解析
+    ff();
+    console.log(b); //19
+    console.log(c);   //19
+   // console.log(a); //报错
+    function ff() {
+        var a=b=c=19;   //a为局部变量，b、c为隐式全局变量
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+    //var g;
+    //g();    //报错g is not a function， g为全局变量，var g；声明会提前，
+    var g=function () {
+        //var a;提前
+        console.log(a);
+        var a=10;
+    };
+    g();    //undefined
+</script>
+</body>
+</html>

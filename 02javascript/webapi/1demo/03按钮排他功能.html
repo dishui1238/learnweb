@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="我是按钮"/>
+<input type="button" value="我是按钮"/>
+<input type="button" value="我是按钮"/>
+<input type="button" value="我是按钮"/>
+<input type="button" value="我是按钮"/>
+<input type="button" value="我是按钮"/>
+</body>
+<script>
+    //获取所有按钮，注册点击事件
+    var inputs = document.getElementsByTagName("input");
+    //遍历所有按钮，被点击的按钮设置value值为：被点击了
+    for (var i = 0; i < inputs.length; i++) {
+        //为每个按钮注册点击事件
+        inputs[i].onclick = function () {
+            //未被点击的按钮，value值为：我是按钮
+            for (var j = 0; j < inputs.length; j++) {
+                inputs[j].value = "我是按钮";
+            }
+            this.value = "被点击了";
+        };
+
+
+    }
+
+</script>
+</html>

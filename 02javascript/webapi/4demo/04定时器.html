@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #box {
+        width: 300px;
+        margin: 200px auto;
+    }
+
+    #time {
+        width: 300px;
+        height: 200px;
+        background-color: #cccccc;
+        position: absolute;
+        font: bold 60px "微软雅黑";
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    #start {
+        height: 30px;
+        width: 80px;
+        position: relative;
+        bottom: 30px;
+        left: 50px;
+    }
+
+    #stop {
+        height: 30px;
+        width: 80px;
+        position: relative;
+        bottom: 30px;
+        right: -90px;
+    }
+</style>
+
+<body>
+<div id="box">
+    <div id="time"></div>
+    <input type="button" value="开始" id="start">
+    <input type="button" value="停止" id="stop">
+</div>
+<script src="common.js"></script>
+<script>
+    //为开始按钮注册点击事件，添加事件处理函数
+    var timeId;
+    my$("start").onclick = function () {
+        var counts = 0;
+        //定时
+        //function里声明变量不用var 将自动转换为全局变量！！！！
+        if(!my$("time").innerText){//判断里面没有计时执行才开始计时
+            timeId = setInterval(function () {
+                counts++;
+                my$("time").innerHTML = counts;
+            }, 1000);
+        }
+        };
+    //为停止按钮注册点击事件，添加事件处理函数
+    my$("stop").onclick = function () {
+        window.clearInterval(timeId)
+    };
+</script>
+</body>
+</html>

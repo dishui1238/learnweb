@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #dv {
+            width: 1340px;
+            height: 560px;
+            background-color: #000;
+            position: relative;
+        }
+        span{
+            color: yellow;
+            font-size: 40px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点亮夜空" id="btn">
+<div id="dv"></div>
+<script src="common.js"></script>
+<script>
+    my$("btn").onclick = function () {
+        setInterval(function () {
+            my$("dv").innerHTML = "<span>☆</span>";
+            var x = parseInt(Math.random() * 1340);
+            var y = parseInt(Math.random() * 560);
+            my$("dv").firstElementChild.style.left = x + "px";
+            my$("dv").firstElementChild.style.top = y + "px";
+        }, 1);
+    };
+</script>
+</body>
+</html>

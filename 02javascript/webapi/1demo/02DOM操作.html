@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="查看效果" id="btn"/><br/>
+<input type="text" value=""><br/>
+<input type="text" value=""><br/>
+<input type="text" value=""><br/>
+<input type="text" value=""><br/>
+</body>
+
+<script>
+    //修改所有文本框内容
+
+    //根据id获取按钮，注册点击事件，添加事件处理函数
+    document.getElementById("btn").onclick = function () {
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            //判断是否为文本框
+            if (inputs[i].type == "text") {
+                inputs[i].value = "一生一世一双人,争教两处销魂";
+            }
+        }
+
+    }
+</script>
+</html>
