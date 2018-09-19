@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝轮播图</title>
+	<style>
+		* {/*一定不要忘了写！！！*/
+			margin: 0;
+			padding: 0;
+		}
+		
+		ul {
+			width: 70px;
+			height: 13px;
+			background: rgba(255, 255, 255, .3);/*255即f,为白色*/
+			position: absolute;
+			bottom: 18px;
+			right: 50%;
+			margin-right: -35px;
+			border-radius: 5px;
+		}
+		ul li {
+			list-style: none;
+			width: 8px;
+			height: 8px;
+			float: left;
+			margin: 3px;
+			background-color: #fff;
+			border-radius: 50%;
+		}
+		.pic {
+			width: 520px;
+			height: 280px;
+			margin: 100px auto 0;
+			position: relative;/*父级元素相对定位*/
+		}		
+		.left {
+			width: 24px;
+			height: 36px;
+			position: absolute;
+			left: 0;
+			top: 50%;/*居中方式*/
+			margin-top: -18px;
+		}
+		.right {
+			width: 24px;
+			height: 36px;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			margin-top: -18px;
+		}
+		.current {
+			background-color: #f40;
+		}
+	</style>
+</head>
+<body>
+	<div class="pic">
+		<img src="imgs/tb.jpg">
+		<img src="imgs/left.png" class="left">
+		<img src="imgs/right.png" class="right">
+		<ul>
+			<li class="current"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>	
+</body>
+</html>

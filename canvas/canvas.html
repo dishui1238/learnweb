@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	canvas{
+		border: 1px solid red;
+	}
+</style>
+<body>
+	<canvas id="canvas1" width="600px" height="400px"></canvas>
+	<canvas id="canvas2" width="600px" height="400px"></canvas>
+	<script>
+		//平行线
+		var myCanvas = document.getElementById('canvas1');
+		var ctx = myCanvas.getContext('2d');
+
+		ctx.beginPath();//开启新路径,解决样式覆盖问题
+		ctx.moveTo(100,100.5);
+		ctx.lineTo(300,100.5);
+		ctx.strokeStyle = 'blue';
+		ctx.lineWidth = 10;
+		ctx.stroke();
+
+		ctx.beginPath();//开启新路径
+		ctx.moveTo(100,200);
+		ctx.lineTo(300,200);
+		ctx.strokeStyle = 'green';
+		ctx.lineWidth = 20;
+		ctx.stroke();
+
+		ctx.beginPath();//开启新路径
+		ctx.moveTo(100,300);
+		ctx.lineTo(300,300);
+		ctx.strokeStyle = 'pink';
+		ctx.lineWidth = 30;
+		//描边
+		ctx.stroke();
+
+		//三角形
+		var myCanvas = document.getElementById('canvas2');
+		var triangle = myCanvas.getContext('2d');
+
+		triangle.beginPath();
+		triangle.moveTo(100,100);
+		triangle.lineTo(200,100);
+		triangle.lineTo(200,200);
+		triangle.closePath();	//自动闭合，解决缺角问题
+		triangle.lineWidth = 20;
+		triangle.stroke();
+		triangle.fillStyle = 'red';
+		triangle.fill();  //填充
+
+		triangle.beginPath();
+		triangle.moveTo(300,100);
+		triangle.lineTo(400,100);
+		triangle.lineTo(300,200);
+		triangle.lineWidth = 20;
+		//triangle.lineCap = 'butt';  默认butt烟蒂
+		triangle.lineCap = 'round';
+		triangle.lineJoin = 'bevel';
+		triangle.stroke();
+	
+
+		triangle.beginPath();
+		triangle.moveTo(100,250);
+		triangle.lineTo(200,250);
+		triangle.setLineDash([5]);
+		triangle.lineWidth = 2;
+		triangle.stroke();
+
+	</script>
+</body>
+</html>

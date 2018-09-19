@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东过渡效果图</title>
+	<style>
+		div {
+			width: 183px;
+			height: 130px;
+			overflow: hidden;
+			float: left;
+			margin-left: 20px;
+		}
+		div img {
+			width: 193px;
+			height: 130px;			
+		}
+		div img {
+			transition: all 0.3s;  /*过渡效果*/
+		}
+		div:hover {
+			box-shadow: 0 10px 20px rgba(0, 0, 0, .4);  /*盒子阴影 *水平阴影 *垂直阴影 模糊距离 颜色*/
+		}
+		div:first-child img:hover {
+			margin-left: -10px;
+			/*transform: translate(-10px); 等同于上一条语句*/ 	/*2D移动*/			
+		}
+		div:nth-child(2) img:hover {
+			transform: rotate(360deg);
+			/* transform-origin: right top; 旋转中心 */
+		}
+		div:last-child img:hover {
+			transform: scale(1.05);  /*2D缩放效果*/
+		}
+	</style>
+</head>
+<body>
+	<div><img src="imgs/1.jpg"></div>
+	<div><img src="imgs/2.jpg"></div>
+	<div><img src="imgs/3.jpg"></div>
+</body>
+</html>

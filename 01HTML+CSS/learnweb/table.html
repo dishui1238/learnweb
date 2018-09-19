@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<!--table属性：cellpacing(单元格与单元格的距离) cellpadding(内容与单元格的距离)
+一般三参为0，即border、cellpacing、cellpadding为0-->
+	<table width="500" border="1" cellspacing="0" align="center" cellpadding="0">
+	<!-- 表格标题，紧跟<table>标签之后，在表格上方居中显示 -->
+	<caption><h3>小说排行榜</h3></caption>
+	<thead>
+		<tr>
+			<th>排名</th>
+			<th>书名</th>
+			<th>作者</th>
+			<th>最近七日</th>
+			<th>相关链接</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+	  		<td>1</td>
+			<td>《活着》</td>
+			<td>余华</td>	
+			<td>100</td>	
+			<td><a href="#">百科</a></td>	
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>《人类简史》</td>
+			<td>冯友兰</td>	
+			<td>98</td>	
+			<td><a href="#">百科</a></td>	
+		</tr>	 
+		<tr>
+			<td>3</td>
+			<td>《看见》</td>
+			<td>柴静</td>	
+			<td>88</td>	
+			<td><a href="#">百科</a></td>	
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>《穆斯林的葬礼》</td>
+			<td>霍达</td>	
+			<td>80</td>	
+			<td><a href="#">百科</a></td>	
+		</tr>	
+		<tr>
+			<td>合计</td>
+			<!-- 合并单元格，跨列合并colspan=""  跨行合并rowspan="" -->
+			<td colspan="3">400</td>
+			<td><a href="#">百科</a></td>	
+		</tr>	
+	</tbody>	
+	</table>
+		<table width="500" border="1" cellspacing="0" align="center" cellpadding="0">
+	<!-- 表格标题，紧跟<table>标签之后，在表格上方居中显示 -->
+	<caption><h3>小说排行榜</h3></caption>
+	<thead>
+		<tr>
+			<th>排名</th>
+			<th>书名</th>
+			<th>作者</th>
+			<th>最近七日</th>
+			<th>相关链接</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+	  		<td>1</td>
+			<td>《活着》</td>
+			<td>余华</td>	
+			<td>100</td>	
+			<td rowspan="4"><a href="#">百科</a></td>	
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>《人类简史》</td>
+			<td>冯友兰</td>	
+			<td>98</td>	
+		</tr>	 
+		<tr>
+			<td>3</td>
+			<td>《看见》</td>
+			<td>柴静</td>	
+			<td>88</td>	
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>《穆斯林的葬礼》</td>
+			<td>霍达</td>	
+			<td>80</td>	
+		</tr>	
+		<tr>
+			<td>合计</td>
+			<!-- 合并单元格，跨列合并colspan=""  跨行合并rowspan="" -->
+			<td colspan="3">400</td>
+		</tr>	
+	</tbody>	
+	</table>
+
+</body>
+</html>

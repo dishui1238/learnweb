@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			padding: 100px;       /*效果等同margin: 100px;*/
+		}
+	     div {
+			width: 100px;
+			height: 150px;
+			border: 1px solid #ccc;
+			float: left;
+			margin-left: -1px;             /*合并重合边框！！！*/
+		}
+		div:hover {
+			border: 1px solid #f40;
+			position: relative;      /*相对定位比标准流高一级，使其浮在上面！！！*/
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

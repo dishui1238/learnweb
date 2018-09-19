@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>input表单</title>
+</head>
+<body>
+	<p>
+		一个完整的表单通常有：表单控件、提示信息、表单域三部分,表单属性如下<br />
+		<img src="imgs/input属性.jpg">		
+	</p>		
+	<p>
+		label标签：作用 用于绑定一个表单元素，当点击label标签的时候，被绑定的表单元素就会获得输入焦点
+		for属性，label for"id"
+	</p>
+	<p>
+		textarea控件（文本域）
+		<!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+	</p>
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<caption><h3 style="color: pink; font-size: 25px;">青春不常在，抓紧谈恋爱</h3></caption>
+		<tr height="40">
+		<label>
+			<td><label for="name">姓名</label></td>
+			<td>
+				<input type="text" id="name">
+			</td>
+		</label>
+		</tr>
+		
+		<tr height="40">
+			<td><label for="mima">密码</label></td>
+			<td>
+				<input type="password" id="mima">
+			</td>
+			
+		</tr>
+		<tr height="40">
+			<td>性别</td>
+			<td>
+				男<img src="imgs/man.jpg" alt=""><input type="radio" name="sex" checked="checked">
+				女<img src="imgs/women.jpg" alt=""><input type="radio" name="sex">
+			</td>
+		</tr>
+		<tr height="40">
+			<td>生日</td>
+			<td>
+				<select name="" id="">
+					<option value="">选择年份</option>
+					<option value="">1995</option>
+					<option value="">1996</option>
+					<option value="">1997</option>
+					<option value="">1998</option>
+				</select><select name="" id="">
+					<option value="">选择月份</option>
+					<option value="">1</option>
+					<option value="">2</option>
+					<option value="">3</option>
+					<option value="">4</option>
+				</select><select name="" id="">
+					<option value="">选择日期</option>
+					<option value="">12</option>
+					<option value="">13</option>
+					<option value="">14</option>
+					<option value="">15</option>
+				</select>
+				
+			</td>
+		</tr>
+		<tr height="40">
+			<td>所在地区</td>
+			<td>
+				<select name="" id="">
+					<option value="" selected="selected" style="color: #ccc;">北京</option>
+					<option value="">哈尔滨</option>
+					<option value="">江苏</option>
+					<option value="">上海</option>
+					<option value="">广州</option>
+			</td>
+		</tr>
+
+		<tr height="40">
+			<td>婚姻状况</td>
+			<td>
+				未婚<input type="radio" name="marrage" checked="checked">
+				离婚<input type="radio" name="marrage">
+				丧偶<input type="radio" name="marrage">
+			</td>
+		</tr>
+		<tr height="40">
+			<td>学历</td>
+			<td>
+				<input type="text" value="本科">
+			</td>
+		</tr>
+		<tr height="40">
+			<td>月薪</td>
+			<td>
+				<input type="text" value="5000-10000">
+			</td>
+		</tr>	
+		<tr height="40">
+			<td>手机号</td>
+			<td>
+				<input type="text">
+			</td>
+		</tr>	
+		<tr height="40">
+			<td>昵称</td>
+			<td>
+				<input type="text">
+			</td>
+		</tr>	
+	
+		<tr height="40">
+			<td>喜欢类型</td>
+			<td>
+				妩媚<input type="checkbox" name="love" checked="checked">
+				可爱<input type="checkbox" name="love">
+				柔美<input type="checkbox" name="love">
+				小鲜肉<input type="checkbox" name="love">
+				型男<input type="checkbox" name="love">
+				气质<input type="checkbox" name="love" checked="checked">
+			</td>
+		</tr>
+		<tr height="40">
+			<td>自我介绍</td>
+			<td>
+				<textarea name="" id="" cols="30" rows="10"></textarea>
+			</td>
+		</tr>
+		<tr height="40">
+			<td></td>
+			<td>
+				<img src="imgs/btn.png" alt="免费注册">
+			</td>
+		</tr>
+		<tr height="40">
+			<td></td>
+			<td>
+				<input type="checkbox" checked="checked"> 
+				我同意注册条款和会员加入标准
+			</td>
+		</tr>	
+	
+		<tr height="40">
+			<td></td>
+			<td>
+				<a href="#">我是会员，立即登录</a>
+			</td>
+		</tr>	
+		<tr height="40">
+			<td></td>
+			<td>
+				<h3>我承诺</h3>
+				<ul><li>年满18周岁，单身</li></ul>
+				<ul><li>抱着严谨的态度</li></ul>
+				<ul><li>真诚寻找另一半</li></ul>
+			</td>
+		</tr>	
+	</table>	
+</body>
+</html>
