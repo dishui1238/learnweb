@@ -155,3 +155,31 @@ find查询： obj.find(查询条件,callback);
 
 	});
 	
+## 2.2 新增
+
+### model保存方法
+
+- Model.create(文档数据, callback))
+
+### entity保存方法
+
+- Entity.save(文档数据, callback))
+
+## 2.3 数据更新
+
+obj.update(查询条件,更新对象,callback);
+
+## 2.4 数据删除
+
+obj.remove(查询条件,callback);
+
+# 小结
+
+查询：find查询返回符合条件一个、多个或者空数组文档结果。
+
+保存：model调用create方法，entity调用的save方法。
+
+更新：obj.update(查询条件,更新对象,callback)，根据条件更新相关数据。
+
+删除：obj.remove(查询条件,callback)，根据条件删除相关数据。
+
