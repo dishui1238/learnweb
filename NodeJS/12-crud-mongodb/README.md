@@ -89,8 +89,11 @@ Schema：一种以文件形式存储的数据库模型骨架，无法直接通�
 // 创建Model
 
 	var TestModel = db.model("test1", TestSchema);
+```
 
 ### 1.4 Entity--给集合赋值
+
+```
 
 	var TestEntity = new TestModel({   //插入数据
 
@@ -154,6 +157,8 @@ find查询： obj.find(查询条件,callback);
 	}
 
 	});
+	
+```
 	
 ## 2.2 新增
 
