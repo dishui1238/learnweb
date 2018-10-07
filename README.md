@@ -8,5 +8,5 @@
 
 # 学习路线
 
-   ![学习路线图](https://github.com/dishui1238/learnweb/raw/master/learning path.jpg)
+   ![学习路线图](https://github.com/dishui1238/learnweb/blob/master/learning%20path.jpg?raw=true)
 
