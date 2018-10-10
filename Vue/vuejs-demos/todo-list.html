@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .done {
+        text-decoration: line-through;
+        color: #ccc
+    }
+</style>
+
+<body>
+    <div id="app">
+        <h1>Todo</h1>
+        <p>{{ todos.filter(item=>!item.done).length }} of {{ todos.length }} remaing[archive]</p>
+
+        <p v-for="(item, index) in todos">
+
+            <input type="checkbox" v-model="item.done">
+            <!--
+                v-bind 用来动态绑定属性值
+                class 给了一个对象：
+                    对象的key就是类名
+                    对象的value是布尔值
+                当布尔值为true时，作用这个key样式
+                当布尔值为false时，去除这个key样式
+            -->
+            <span v-bind:class="{done:item.done}">{{ item.title }}</span>
+            <button @click="handleTodoDelete(index)">×</button>
+        </p>
+
+        <input type="text" v-model="todoText" @keydown.enter="handleAddTodoClick">
+        <!--@表示 v-on-->
+        <button @click="handleAddTodoClick">add</button>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const todos = [
+            {
+                id: 1,
+                title: '吃饭',
+                done: true
+            },
+            {
+                id: 2,
+                title: '睡觉',
+                done: true
+            },
+            {
+                id: 3,
+                title: '写代码',
+                done: false
+            }
+        ]
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todos,
+                // 绑定文本框内容
+                todoText: ''
+            },
+            methods: {
+                handleAddTodoClick() {
+                    // 得到文本框的内容，push到todos中
+                    // console.log(this.todoText)
+                    const todoText = this.todoText.trim()
+
+                    // 非空校验
+                    if (!todoText.length) {
+                        return
+                    }
+                    this.todos.push({
+                        id: todos[todos.length - 1].id + 1,
+                        title: todoText,
+                        done: false
+                    })
+                    // 清空文本框
+                    this.todoText = ''
+                },
+                handleTodoDelete(index) {
+                    this.todos.splice(index, 1)
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        商品价格：<input type="text" v-model="price"> <br> 商品数量：
+        <button v-on:click="number>1?number--:1">-</button>{{ number }} <button v-on:click="handleIncrement">+</button>
+        <br> 总价格：{{ price*number }}
+    </div>
+
+    <div id="app-3">
+        <p v-if="seen">现在你看到我了</p>
+    </div>
+
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                price: 46,
+                number: 1,
+                count: 1
+            },
+            methods: {
+                handleIncrement: function () {
+                    this.number++
+                }
+            }
+        })
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                seen: true
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                todos: [
+                    { text: '学习 JavaScript' },
+                    { text: '学习 Vue' },
+                    { text: '整个牛项目' }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

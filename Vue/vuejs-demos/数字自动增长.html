@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="number" v-model='number'>
+        <!--<button onclick="handleIncrement()">点击+1</button>-->
+        <!--<button v-on:click="number++">点击+1</button>-->
+        <button v-on:click="handleIncrement">点击+1</button>
+    </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                number: 1
+            },
+            methods:{
+                handleIncrement:function(){
+                    // 在通过v-on注册的方法中，可通过this访问data数据成员
+                    this.number++
+                }
+            }
+        })
+
+        // function handleIncrement() {
+        //     app.number++
+        // }
+    </script>
+</body>
+
+</html>
