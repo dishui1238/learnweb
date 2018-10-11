@@ -5,7 +5,7 @@
    + <script src="node_modules/vue/dist/vue.js"></script>
 2. new Vue 得到vue实例
 
-```
+```javascript
     const app = new Vue({
             el:'#app',
             data:{
@@ -18,11 +18,37 @@
       - 响应式数据：数据驱动视图，当数据改变，所有绑定该数据的 DOM 都会跟着改变（MVVM）
    * 将 DOM 操作转换为数据驱动视图操作  *
 
-# 双向数据绑定
+# 数据绑定
+
+- v-on
+- v-bind
+- v-if 
+- v-for
+- v-once
+- v-html
+
+## 数据绑定
 
 v-model 是Vue 提供的一个特殊属性，在Vue中被称之为指令，作用是：双向绑定表单控件
 
 ` <input type="text" v-model='message'> `
+
+## 一次性绑定 v-once
+
+首次载入后不会改变
+`<p v-once>{{ message }}</p>`
+
+## 输出HTML
+
+` <div v-html="rawHtml"></div>`
+
+```javascript
+    new Vue({
+        el:"#app",
+        rawHtml:'<h1>hello</h1>'
+    })
+```
+输出 hello
 
 # vue 与 JQuery 比较
 
@@ -31,10 +57,10 @@ JQuery 提高了 DOM 操作的效率， Vue极大地解放了 DOM 操作
 # vue 事件绑定方法
 
 ` <button v-on:click="handleIncrement">点击+1</button> `
-
+- v-bind 用于标签属性绑定
 ` <a v-bind:href="url">菜鸟教程</a> `
 
-```
+```javascript
     const app = new Vue({
             el: '#app',
             data: {
@@ -52,13 +78,13 @@ JQuery 提高了 DOM 操作的效率， Vue极大地解放了 DOM 操作
 # 属性操作
 
 以下实例判断 class1 的值，如果为 true 使用 class1 类的样式，否则不使用该类：
-```
+```javascript
     <div id="app">
-    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
-    <br><br>
-    <div v-bind:class="{'class1': class1}">
-        v-bind:class 指令
-    </div>
+        <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+        <br><br>
+        <div v-bind:class="{'class1': class1}">
+        // v-bind:class 指令
+        </div>
     </div>
         
     <script>
