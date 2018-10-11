@@ -21,12 +21,18 @@
 # 数据绑定
 
 - v-on
+   + v-on:click.prevent
+   + v-on:submit.prevent
 - v-bind
 - v-if 
+- v-else
 - v-for
 - v-once
 - v-html
-
+- v-text
+- v-model
+   + v-model.number 将数据转为数字类型
+- v-show
 ## 数据绑定
 
 v-model 是Vue 提供的一个特殊属性，在Vue中被称之为指令，作用是：双向绑定表单控件
@@ -188,4 +194,8 @@ Vue.set 方法用来新增对象的属性。如果要增加属性的对象是响
 - 我们可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
 - 可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。
 
+# TodoMVC 模板仓库
+
+git clone https://github.com/tastejs/todomvc-app-template.git --depth=1
+* --depth 表示只下载最后一次的 commit ，其他历史记录不要，提高下载速度*
 
