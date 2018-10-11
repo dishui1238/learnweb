@@ -70,3 +70,97 @@
    `app.use(bodyParser.json())`
 
 - 3. 使用 req.body 获取post请求数据
+
+# 密码 md5 加密
+
+** 一般使用双重加密 md5(md5(password)) **
+
+# try-catch-finally 语法
+
+- try语句允许我们定义在执行时进行错误测试的代码块。
+
+- catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+
+- finally 语句在 try 和 catch 之后无论有无异常都会执行。
+
+* 注意： catch 和 finally 语句都是可选的，但你在使用 try 语句时必须至少使用一个。*
+
+- 例
+
+```
+ try { 
+        if(x == "")  throw "为空";
+        if(isNaN(x)) throw "不是一个数字";
+        if(x > 10)   throw "太大了";
+        if(x < 5)    throw "太小了";
+    }
+    catch(err) {
+        message.innerHTML = "输入的值 " + err;
+    }
+    //输入 1 返回 输入的值太小了
+```
+# 异步&同步表单提交
+
+- 表单具有默认的提交行为，默认同步，浏览器会锁死（转圈），等待响应，直接把响应结果覆盖当前页面
+
+- 异步提交  res.redirect('/')重定向失效 需在客户端跳转window.location.href = '/'
+
+# session & Cookie
+
+- Coolie 可以用来保存一些不太敏感的信息
+- Session 可以用来保存敏感数据（账号密码）
+
+在Express中，默认不支持Session和Cookie,需中间件 expres-session
+
+- 第一步 安装
+   npm install express-session
+- 第二步 配置
+   var session = require('express-session')
+
+   ```
+    app.use(session({
+        secret: 'keyboard cat', //配置加密字符串，在原有基础上，和这个字符串拼接起来去加密，防止客户端恶意伪造
+        resave: false,
+        saveUninitialized: true //无论是否使用session，默认分配一个session
+    }))
+
+   ```
+- 第三步 使用 req.session 
+
+   - 添加session数据： req.session.foo='bar'
+   - 访问session数据：rea.session.foo 
+
+* 默认session是内存存储的，服务器一旦重启就会丢失，生产环境会持久化存储 *
+# 中间件
+
+* 中间件本身是一种方法，该方法接收三个参数：Request请求对象、response响应对象、next下一个中间件 *
+- 和请求路径无关的中间件
+next 和顺序相关
+```
+    app.use(function(res,res,next){
+        console.log('1')
+        next()  //不调用next()不会进入下一个中间件
+    })
+    app.use(function(req,res,next){
+        console.log('2')
+        next()
+    })
+    app.use(function(req,res,next){
+        console.log('3')
+    })
+```
+- 以 /××× 开头的路径中间件
+
+```
+app.use('/a',function(req,res){
+    console.log(req.url)   //得到不包含/a的url后面的部分
+})
+
+- 错误处理中间件---统一处理错误信息
+```
+    router.use(function (err, req, res, next) {
+        res.status(500).send(err.message)
+     })
+     //调用
+     next(err)
+```
