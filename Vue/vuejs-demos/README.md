@@ -31,6 +31,9 @@ JQuery 提高了 DOM 操作的效率， Vue极大地解放了 DOM 操作
 # vue 事件绑定方法
 
 ` <button v-on:click="handleIncrement">点击+1</button> `
+
+` <a v-bind:href="url">菜鸟教程</a> `
+
 ```
     const app = new Vue({
             el: '#app',
@@ -46,3 +49,117 @@ JQuery 提高了 DOM 操作的效率， Vue极大地解放了 DOM 操作
             }
         })
 ```
+# 属性操作
+
+以下实例判断 class1 的值，如果为 true 使用 class1 类的样式，否则不使用该类：
+```
+    <div id="app">
+    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        v-bind:class 指令
+    </div>
+    </div>
+        
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                class1: false
+            }
+        });
+    </script>
+```
+# 缩写
+
+Vue.js 为两个最为常用的指令提供了特别的缩写：
+
+### v-bind 缩写
+
+```html
+    <!-- 完整语法 -->
+    <a v-bind:href="url"></a>
+    <!-- 缩写 -->
+    <a :href="url"></a>       
+```
+
+```javascript
+    new Vue({
+        el: '#app',
+        data: {
+            url: 'http://www.runoob.com',
+            target:'_blank'
+        }
+    })
+```
+### v-on 缩写
+
+```html  
+    <!-- 完整语法 -->
+    <a v-on:click="doSomething"></a>
+    <!-- 缩写 -->
+    <a @click="doSomething"></a>
+```
+
+# 新增对象属性
+
+Vue.set 方法用来新增对象的属性。如果要增加属性的对象是响应式的，那该方法可以确保属性被创建后也是响应式的，同时触发视图更新
+
+# 条件语句
+
+```javascript
+    <div id="app">
+        <div v-if="Math.random() > 0.5">
+             Sorry
+        </div>
+        <div v-else>
+            Not sorry
+        </div>
+    </div>
+        
+    <script>
+        new Vue({
+            el: '#app'
+        })
+    </script>
+```
+
+## v-show
+
+` <h1 v-show="ok">Hello!</h1> `
+
+# 循环语句
+
+## v-for("item in todos" )
+
+# 计算属性
+
+```javascript
+    <div id="app">
+        <p>原始字符串: {{ message }}</p>
+        <p>计算后反转字符串: {{ reversedMessage }}</p>
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Runoob!'
+            },
+            computed: {
+                // 计算属性的 getter
+                reversedMessage: function () {
+                // `this` 指向 vm 实例
+                return this.message.split('').reverse().join('')
+                }
+            }
+    })
+    </script>
+
+```
+## computed VS methods
+
+- 我们可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
+- 可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。
+
+
