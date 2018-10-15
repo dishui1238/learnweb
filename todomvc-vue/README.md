@@ -24,7 +24,7 @@
 
 ## 按键修饰符
 
-    [按键修饰符](https://cn.vuejs.org/v2/guide/events.html#%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6)
+    [按键修饰符](https://cn.vuejs.org/v2/guide/events.html)
 
 ## 获取用户输入
 
