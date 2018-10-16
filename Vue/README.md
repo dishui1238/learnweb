@@ -197,3 +197,21 @@ app4.todos.push({ text: '新项目' })  添加一个新项目
 ## v-once
 
 - 只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
+
+## 计算属性
+
+- 解决问题： ①模板内的逻辑复杂 ②调用次数过多（用methods方法）
+- 对于复杂逻辑应使用计算属性
+
+```javascript
+      computed:{
+		remaningCount:function(){
+			return this.todos.filter(t=>!t.complete).length
+		}
+	},
+```
+*  Vue 提供的一大特色，本质是方法，但不能当做方法来调用，必须当做属性来调用，相比于方法优势在于会缓存计算的结果,这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 *
+
+
+
+
