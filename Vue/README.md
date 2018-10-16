@@ -139,3 +139,61 @@ app4.todos.push({ text: '新项目' })  添加一个新项目
             -->
             <span v-bind:class="{done:item.done}">{{ item.title }}</span>
 ```
+
+# 指令
+
+## v-text & v-cloak
+
+在vue中解决{{ }}闪烁的问题：
+
+- v-text 
+` <h1 v-text="message></h1>" `
+- v-cloak 这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕,样式自动移除。
+
+    ```html
+        [v-cloak] {
+        display: none;
+        }
+        <div v-cloak>
+            {{ message }}
+            {{ message }}
+        </div>
+    ```
+## v-show & v-if
+
+- v-show 根据条件进行显示和隐藏，无论显示还是隐藏，DOM都在
+- v-if 根据条件进行渲染和不渲染，不渲染就会将 DOM 移除
+
+## v-else & v-else-if
+
+ v-else 前一兄弟元素必须有 v-if 或 v-else-if
+
+## v-pre
+
+- 跳过这个元素和它的子元素，不需要编译。
+- 可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
+- 否则vue会逐个检查有没有vue语法
+
+## v-html
+
+- 更新元素的 innerHTML 。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译 。
+
+## [v-for](https://cn.vuejs.org/v2/api/#v-for)
+
+## [v-on](https://cn.vuejs.org/v2/api/#v-on)
+
+- 缩写 @
+* 修饰符 *
+
+## v-bind
+
+- 缩写 :
+- 动态的绑定一个或多个属性
+
+## v-model
+
+- 在表单控件或者组件上创建双向绑定
+
+## v-once
+
+- 只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
