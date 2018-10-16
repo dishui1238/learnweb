@@ -1,3 +1,6 @@
+# develop
+
+`npm start`
 
 # 项目配置
 
@@ -61,3 +64,43 @@
                 i--
             }
     ```
+# v-text & v-cloak
+
+在vue中解决{{ }}闪烁的问题：
+
+- v-text 
+` <h1 v-text="message></h1>" `
+- v-cloak 这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕,样式自动移除。
+
+    ```html
+        [v-cloak] {
+        display: none;
+        }
+        <div v-cloak>
+            {{ message }}
+            {{ message }}
+        </div>
+    ```
+# v-show & v-if
+
+- v-show 根据条件进行显示和隐藏，无论显示还是隐藏，DOM都在
+- v-if 根据条件进行渲染和不渲染，不渲染就会将 DOM 移除
+
+# v-pre
+
+- 跳过这个元素和它的子元素，不需要编译。
+- 可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
+- 否则vue会逐个检查有没有vue语法
+
+# 利用 watch 监视实现本地持久化
+
+[watch](https://cn.vuejs.org/v2/api/#watch)
+
+- 引用类型只能监视一层，无法监视子成员的改变
+```javascript
+    // 深度 watcher 监视c
+        c: {
+        handler: function (val, oldVal) { /* ... */ },
+        deep: true
+        },
+```

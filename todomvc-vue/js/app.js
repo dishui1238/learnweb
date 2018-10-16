@@ -3,7 +3,7 @@
 		{
 			id: 1,
 			title: '学习',
-			completed: false
+			complete: false
 		},
 		{
 			id: 2,
@@ -16,10 +16,39 @@
 			complete: false
 		}
 	]
-	new Vue({
+	 new Vue({
 		data: {
-			todos,
+			todos: JSON.parse(window.localStorage.getItem('todos') || '[]'),
+			// todos,
 			currentEditing: null
+		},
+		computed: {
+			remaningCount: function () {
+				return this.todos.filter(t => !t.complete).length
+			},
+
+			toggleAllCompleted: {
+				get() {
+					return this.todos.every(t => t.complete)
+				},
+				set() {
+					const checked = !this.toggleAllCompleted
+					return this.todos.forEach(item => {
+						item.complete = checked
+					})
+				}
+			}
+		},
+		watch: {
+			// 深度 watcher
+			todos: {
+				handler() {
+					// 监视todos的变化，并持久化存储
+					window.localStorage.setItem('todos', JSON.stringify(this.todos))
+				},
+				deep: true,
+				// immediate:true //无论变化与否，开始就调用一次
+			},
 		},
 		methods: {
 			handleTodosRemove(index) {
@@ -39,12 +68,12 @@
 				e.target.value = ''
 			},
 
-			handleToggleAll(e) {
-				const checked = e.target.checked
-				this.todos.forEach(function (element) {
-					element.complete = checked
-				});
-			},
+			// handleToggleAll(e) {
+			// 	const checked = e.target.checked
+			// 	this.todos.forEach(function (element) {
+			// 		element.complete = checked
+			// 	});
+			// },
 
 			handleDblclickEditing(item) {
 				this.currentEditing = item
@@ -61,14 +90,14 @@
 				this.currentEditing = null
 			},
 
-			handleCancleEditing(){
+			handleCancleEditing() {
 				this.currentEditing = null
 			},
 
-			handleClearCompleted(){
-				for(let i=0;i<this.todos.length;i++){
-					if(this.todos.complete){
-						this.todos.splice(i,1)
+			handleClearCompleted() {
+				for (let i = 0; i < this.todos.length; i++) {
+					if (this.todos.complete) {
+						this.todos.splice(i, 1)
 						i--
 					}
 				}
