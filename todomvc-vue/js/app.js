@@ -26,6 +26,12 @@
 			el.focus()
 		}
 	})
+	Vue.directive('todo-focus', {
+		update(el){
+			// console.log(el)
+			el.focus()
+		}		
+	})
 	window.app = new Vue({
 		data: {
 			todos: JSON.parse(window.localStorage.getItem('todos') || '[]'),
@@ -110,7 +116,7 @@
 				if (!editingText) {
 					return this.todos.splice(index, 1)
 				}
-				todos[index].title = editingText
+				this.todos[index].title = editingText
 				this.currentEditing = null
 			},
 

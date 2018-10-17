@@ -36,7 +36,7 @@
 							<label>{{ item.title }}</label>
 							<button class="destroy" v-on:click="handleTodosRemove(index)"></button>
 						</div>
-						<input class="edit" 
+						<input v-todo-focus class="edit" 
 						@keydown.enter="handleEditingSave(index,$event)"
 						@keydown.esc="handleCancleEditing"
 						@blur="handleEditingSave(index,$event)"
