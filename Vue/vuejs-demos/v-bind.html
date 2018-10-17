@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 400px;
+        height: 100px;
+    }
+    .box2{
+        background-color:pink;
+    }
+</style>
+<body>
+    <div id="app">
+        <h1 v-my-bind:title="message">{{ message }}</h1>
+        <input type="text" v-model="message">
+        <div v-my-bind:class="{box:true,box2:true}"></div>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        // Vue.directive('my-bind', {
+        //     // bind（）只调用一次
+        //     bind(el, binding) {
+        //         console.log(el) //<h1>Hello Vue.js!</h1>
+        //         console.log(binding) //{name: "my-bind", rawName: "v-my-bind:title", value: "Hello Vue.js!", expression: "message", arg: "title", …}
+        //         // 操作DOM
+        //         el.setAttribute(binding.arg, binding.value)
+        //     },
+        //     // 实现实时更新
+        //     update(el,binding){
+        //         el.setAttribute(binding.arg, binding.value)
+        //     }
+        // })
+
+        // 简写方式
+        Vue.directive('my-bind',function(el,binding){
+            if(binding.arg==='class'){
+                for(let key in binding.value){
+                    if(binding.value[key]){
+                        el.classList.add(key)
+                    }
+                }
+            }else{
+                el.setAttribute(binding.arg,binding.value)
+            }
+        })
+        new Vue({
+            data: {
+                message: 'Hello Vue.js!'
+            }
+        }).$mount('#app')
+    </script>
+</body>
+
+</html>
