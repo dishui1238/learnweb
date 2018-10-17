@@ -245,4 +245,34 @@ app4.todos.push({ text: '新项目' })  添加一个新项目
 
 - localStorage在浏览器的隐私模式下面是不可读取的
 
+# 自定义指令
+
+例子 vuejs-demos/v-bind.html
+
+## 简写
+
+由于很多时候，会在bind、update中调用相同的代码，所以提供了一个简写方式
+
+```javascript     
+       Vue.directive('my-bind', {
+            // bind（）只调用一次
+            bind(el, binding) {
+                console.log(el) //<h1>Hello Vue.js!</h1>
+                console.log(binding) //{name: "my-bind", rawName: "v-my-bind:title", value: "Hello Vue.js!", expression: "message", arg: "title", …}
+                // 操作DOM
+                el.setAttribute(binding.arg, binding.value)
+            },
+            // 实现实时更新
+            update(el,binding){
+                el.setAttribute(binding.arg, binding.value)
+            }
+        })
+```
+简写
+
+```javascript
+      Vue.directive('my-bind',function(el,binding){
+            el.setAttribute(binding.arg,binding.value)
+        })
+```
 
