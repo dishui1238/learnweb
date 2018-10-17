@@ -1,26 +1,37 @@
 (function () {
-	const todos = [
-		{
-			id: 1,
-			title: '学习',
-			complete: false
-		},
-		{
-			id: 2,
-			title: '写代码',
-			complete: false
-		},
-		{
-			id: 3,
-			title: '睡觉',
-			complete: false
+	// const todos = [
+	// 	{
+	// 		id: 1,
+	// 		title: '学习',
+	// 		complete: false
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		title: '写代码',
+	// 		complete: false
+	// 	},
+	// 	{
+	// 		id: 3,
+	// 		title: '睡觉',
+	// 		complete: false
+	// 	}
+	// ]
+
+	// 注册一个全局自定义指令 `v-focus`
+	Vue.directive('focus', {
+		// 当被绑定的元素插入到 DOM 中时……
+		// el 参数就是你作用该指令的 DOM 元素
+		inserted: function (el) {
+			// 聚焦元素
+			el.focus()
 		}
-	]
-	 new Vue({
+	})
+	window.app = new Vue({
 		data: {
 			todos: JSON.parse(window.localStorage.getItem('todos') || '[]'),
 			// todos,
-			currentEditing: null
+			currentEditing: null,
+			filterText: ''
 		},
 		computed: {
 			remaningCount: function () {
@@ -36,6 +47,19 @@
 					return this.todos.forEach(item => {
 						item.complete = checked
 					})
+				}
+			},
+			filterTodos() {
+				switch (this.filterText) {
+					case 'active':
+						return this.todos.filter(t => !t.complete);
+
+					case 'completed':
+						return this.todos.filter(t => t.complete);
+
+					default:
+						return this.todos;
+
 				}
 			}
 		},
@@ -96,7 +120,7 @@
 
 			handleClearCompleted() {
 				for (let i = 0; i < this.todos.length; i++) {
-					if (this.todos.complete) {
+					if (this.todos[i].complete) {
 						this.todos.splice(i, 1)
 						i--
 					}
@@ -106,4 +130,11 @@
 			}
 		}
 	}).$mount('#app')
+
+	// 注册 hash 的改变事件
+	window.onhashchange = function () {
+		app.filterText = window.location.hash.substr(2)
+	}
+	// 页面初始化的时候调用一次，保持路由路径状态
+	window.onhashchange()
 })();

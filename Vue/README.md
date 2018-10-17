@@ -212,6 +212,37 @@ app4.todos.push({ text: '新项目' })  添加一个新项目
 ```
 *  Vue 提供的一大特色，本质是方法，但不能当做方法来调用，必须当做属性来调用，相比于方法优势在于会缓存计算的结果,这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 *
 
+# 利用 watch 监视实现本地持久化
 
+[watch](https://cn.vuejs.org/v2/api/#watch)
+
+- 引用类型只能监视一层，无法监视子成员的改变
+```javascript
+    // 深度 watcher 监视c
+        c: {
+        handler: function (val, oldVal) { /* ... */ },
+        deep: true
+        },
+```
+
+## localStorage (H5新增)
+
+- localStorage 主要是用来作为本地存储，解决了cookie存储空间不足的问题(cookie中每条cookie的存储空间为4k)，localStorage中一般浏览器支持的是5M大小，这个在不同的浏览器中localStorage会有所不同。
+
+- 浏览器的大小不统一，并且在IE8以上的IE版本才支持localStorage这个属性
+
+- 目前所有的浏览器中都会把localStorage的值类型限定为string类型，这个在对我们日常比较常见的JSON对象类型需要一些转换
+
+```javascript
+    todos: JSON.parse(window.localStorage.getItem('todos') || '[]'),
+```
+
+- localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡
+
+- localStorage不能被爬虫抓取到
+
+- localStorage与sessionStorage的唯一一点区别就是localStorage属于永久性存储，而sessionStorage属于当会话结束的时候，sessionStorage中的键值对会被清空。
+
+- localStorage在浏览器的隐私模式下面是不可读取的
 
 
