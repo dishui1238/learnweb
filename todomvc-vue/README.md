@@ -155,7 +155,7 @@
 
 5. 同时浏览器地址栏散列值的变化也会触发window.location.hash值的变化，从而触发onhashchange事件。
 
-6. 当浏览器地址栏中URL包含哈希如http://www.baidu.com/#home，这时按下输入，浏览器发送http://www.baidu.com/请求至服务器，请求完毕之后设置散列值为#home，进而触发onhashchange事件。
+6. 当浏览器地址栏中URL包含哈希如`http://www.baidu.com/#home`，这时按下输入，浏览器发送`http://www.baidu.com/`请求至服务器，请求完毕之后设置散列值为#home，进而触发onhashchange事件。
 
 7. 当只改变浏览器地址栏URL的哈希部分，这时按下回车，浏览器不会发送任何请求至服务器，这时发生的只是设置散列值新修改的哈希值，并触发onhashchange事件。
 
