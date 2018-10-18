@@ -276,3 +276,22 @@ app4.todos.push({ text: '新项目' })  添加一个新项目
         })
 ```
 
+# nrm 安装与使用
+
+注意：nrm只是单纯的提供了几个常用的下载包的URL地址，并能让我们在这几个地址之间很方便的进行切换，但是每次装包的时候使用的装包工具都是npm
+
+## 装包地址
+- npm ---- https://registry.npmjs.org/
+- cnpm --- http://r.cnpmjs.org/
+- * taobao - https://registry.npm.taobao.org/
+- nj ----- https://registry.nodejitsu.com/
+- rednpm - http://registry.mirror.cqupt.edu.cn/
+- npmMirror  https://skimdb.npmjs.com/registry/
+- edunpm - http://registry.enpmjs.org/
+
+## 指令
+
+- npm i nrm -g  全局安装nrm包
+- nrm ls    查看当前所有可用的镜像源地址，以及当前使用的镜像源地址
+- nrm use taobao 切换到taobao镜像地址
+
