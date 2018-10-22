@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //案例1：截取关键词
+    var str = "汴水流，泗水流，流到瓜州古渡头，吴山点点愁。思悠悠，恨悠悠，恨到归时方始休，月明人倚楼。";
+    var key = "瓜州";
+    var index = str.indexOf(key);
+    str = str.substr(index, 2);
+    console.log(str);
+
+    //案例2：找“流”的位置
+    var str2 = "汴水流，泗水流，流到瓜州古渡头，吴山点点愁。思悠悠，恨悠悠，恨到归时方始休，月明人倚楼。";
+    var key="流";
+    var index=0;
+    while(str2.indexOf(key,index)!=-1){//如果是-1 说明找完了
+        index=str2.indexOf(key,index);
+        console.log(index);
+        index+=key.length;
+    }
+
+    //案例3：计算每个字母出现的次数
+    var str3="We are who we choose to be";
+    //第一步;将所有的字母换成小写
+    str3=str3.toLowerCase();
+    //第二步：创建一个空对象，目的：把字母作为键，出现的次数作为值
+    var obj={};
+    //第三步：遍历字符串，获取每个字母
+    for(var i=0;i<str3.length;i++){
+        var key=str3[i];
+        if(obj[key]){   //如果有这个字母，则在原来值得基础上+1
+            obj[key]++;
+        }
+        else{       //如果没有，则设置初始值为1
+            obj[key]=1;
+        }
+    }
+    //第四步：遍历对象
+    for(var key in obj){
+        console.log(key+"出现了"+obj[key]+"次");
+    }
+
+</script>
+</body>
+</html>

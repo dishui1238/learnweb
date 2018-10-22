@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //自定义一个对象，实现系统的max方法
+    function MyMath() {
+        this.getMax= function () {
+            var max=arguments[0];
+            for(var i=1;i<arguments.length;i++){
+                if(max<arguments[i]){
+                    max=arguments[i];
+                }
+            }
+            return max;
+        };
+    }
+    //需要输入值得调用方式
+    var m=new MyMath();
+    var result=m.getMax(100,23,33,46,99,999);
+    console.log(result);
+
+    //随机产生一个十六进制的颜色值
+    function getColor() {
+        var str="#";
+        var arr=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+        for(i=0;i<6;i++){
+            var num=parseInt(Math.random()*16);
+            str +=arr[num];
+        }
+        return str;
+    }
+    //不需输入值的调用方式
+    console.log(getColor());
+</script>
+</body>
+</html>

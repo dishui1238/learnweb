@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //var number;
+    var number1 = parseInt(prompt("请您输入第一个数字"));
+    var number2 = parseInt(prompt("请您输入第二个数字"));
+    /* if (number1 >= number2) {
+     number = number1;
+     console.log(number1);
+     }
+     else {
+     number = number2;
+     console.log(number2);
+     }
+     if (number % 2 == 0) {
+     alert("最大数为偶数");
+     }
+     else {
+     alert("最大数为奇数");
+     }*/
+    var number = number1 > number ? number1 : number2;
+    if (number % 2 == 0) {
+        alert("最大数为偶数");
+    }
+    else {
+        alert("最大数为奇数");
+    }
+    var year = parseInt(prompt("请输入年份"));
+    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+        alert("闰年");
+    }
+    else {
+        alert("平年");
+    }
+</script>
+</body>
+</html>

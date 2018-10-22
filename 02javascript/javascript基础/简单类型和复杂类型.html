@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 原始数据类型：number、string、boolean、null、undefined、object
+    * 简单类型（值类型、基本类型）：number，string，boolean
+    * 复杂类型（引用类型）：object
+    * 空类型：null、undefined
+    *
+    * 值类型的值在*栈*中存储
+    * 引用类型，对象在堆上存储，地址在栈上存储
+    * */
+
+    //值类型之间传递的是值
+    function f(x){
+        x=100;
+    }
+   var num=10;
+    f(num);
+    console.log(num);   //10
+
+    //引用类型之间传递的是地址(引用),画堆栈图
+    var obj={
+        name:"小明"
+    };
+    function f2(obj2) {
+        obj2.name="小红";
+    }
+    console.log(obj.name);//小明
+    f2(obj);
+    console.log(obj.name);//
+</script>
+</body>
+</html>

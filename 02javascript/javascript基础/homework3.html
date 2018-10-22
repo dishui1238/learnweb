@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1、求1-100之间不能被7整除的数的和（continue）
+    var sum1=0;
+    for(var i=1;i<=100;i++){
+        if(i%7==0){
+            continue;
+        }
+       sum1+=i;
+    }
+    console.log(sum1);
+    //2、求200-300之间所有奇数的和（continue）
+    var sum2=0;
+    for(var i=100;i<=200;i++){
+        if(i%2==0){
+            continue;
+        }
+        sum2+=i;
+    }
+    console.log(sum2);
+    //3、求200-300之间第一个能被7整除的数（break）
+   // var number;
+    for(var i=200;i<=300;i++){
+        if(i%7==0){
+            break;
+        }
+    }
+    console.log(i);
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //匿名函数
+    //将函数赋值给f这个变量
+    var f = function () {
+        console.log("匿名函数");
+    };
+    //调用方式
+    f();
+    //函数的自调用，声明的同时直接调用
+    //一次性使用
+    (function () {console.log("匿名函数调用方式");})();
+    //函数是有数据类型的，类型为function
+    console.log(typeof(f));
+
+
+    //回调函数——函数作为参数使用
+    function f1(fn) {
+        console.log("回调函数");
+        fn();
+    }
+    function f2() {
+        console.log("函数作为参数使用");
+    }
+    f1(f2);
+
+
+    //函数可以作为返回值使用
+    function f3() {
+        console.log("娱乐至死的时代！");
+        return function () {
+            console.log("谁还在清醒着？");
+        }
+    }
+    f3();   //只输出上面一句话
+    var ff=f3();
+    ff();   //两句话同时输出
+    f3()(); //同时输出上面两句话
+</script>
+</body>
+</html>

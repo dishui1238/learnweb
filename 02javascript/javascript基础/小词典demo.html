@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    var obj={
+    //        "abandonment":"n.放弃",
+    //        "abbreviation" :"n.缩写",
+    //        "abeyance" :"n.缓办，中止",
+    //        "abide" :"v.遵守",
+    //        "ability" :"n.能力",
+    //        "able" :"adj.有能力的，能干的",
+    //        "abnormal": "adj.反常的，变态的",
+    //        "aboard": "adv.船(车)上",
+    //        "abolish" :"v.废除，取消",
+    //        "abolition" :"n.废除，取消"
+    //    };
+    //    var str=prompt("请输入要查找的单词：");
+    //    if(obj[str]){
+    //        console.log(str+"："+obj[str]);
+    //    }else{
+    //        console.log("不存在");
+    //    }
+
+    var arr = ["abide-v.遵守", "abolish-v.废除", "able-adj.有能力的，能干的"];
+    var obj = {};
+    for(var i=0;i<arr.length;i++){
+        var keyword=arr[i].split("-");
+        obj[keyword[0]]=keyword[1];
+    }
+    var str=prompt("请输入要查找的单词：");
+    if(obj[str]){
+        console.log(obj[str]);
+    }else{
+        console.log("不存在");
+    }
+
+</script>
+</body>
+</html>
