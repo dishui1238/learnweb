@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #dv {
+            width: 200px;
+            height: 100px;
+            background: #cccccc;
+            /*使其脱离文档流*/
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="移动到400px" id="btn1"/>
+<input type="button" value="移动到800px" id="btn2"/>
+
+<div id="dv"></div>
+<script src="common.js"></script>
+<script>
+    //移动到400px
+    my$("btn1").onclick = function () {
+        animate(my$("dv"),400);
+    };
+
+    //移动800px
+    my$("btn2").onclick = function () {
+        animate(my$("dv"),800);
+    };
+    //函数封装，任意一个元素移动到指定位置
+    function animate(element, target) {
+        //先清理定时器，使其只产生一个定时器
+        clearInterval(element.timeId);
+        //获取当前位置，为数值型
+        var current = element.offsetLeft;
+        element.timeId = setInterval(function () {
+            //每次走的像素
+            var step = 9;
+            step = current < target ? step : -step;
+            current += step;
+            if (Math.abs(current - target) >Math.abs( step)) {
+                element.style.left = current + "px";
+            } else {
+                clearInterval(element.timeId);
+                element.style.left = target + "px";
+            }
+        }, 20);
+    }
+</script>
+</body>
+</html>

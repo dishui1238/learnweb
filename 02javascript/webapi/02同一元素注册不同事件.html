@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<input type="button" value="显示效果" id="btn"/>
+<body>
+<script src="common.js"></script>
+<script>
+    //为同一个元素绑定不同的事件，指向同一个事件处理函数
+    my$("btn").onclick = f1;
+    my$("btn").onmouseover = f1;
+    my$("btn").onmouseout = f1;
+    function f1(e) {
+        console.log(e);
+        switch (e.type) {
+            case "click"://e.type为click
+                alert("被点了");
+                break;
+            case "mouseover"://e.type为mouseover
+                this.style.backgroundColor = "lightblue";
+                break;
+            case  "mouseout"://e.type为mouseout
+                this.style.backgroundColor = "pink";
+                break;
+        }
+    }
+</script>
+</body>
+</html>

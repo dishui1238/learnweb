@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .nodeSmall {
+            width: 50px;
+            height: 50px;
+            background: url(images/bgs.png) no-repeat -159px -51px;
+            position: fixed;
+            right: 10px;
+            top: 40%;
+        }
+        .erweima {
+            position: absolute;
+            top: 0;
+            left: -150px;
+        }
+        .nodeSmall a {
+            display: block;
+            width: 50px;
+            height: 50px;
+        }
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="nodeSmall" id="node_small">
+    <a href="#"></a><!--锚定-->
+    <div class="erweima hide" id="er">
+        <img src="images/456.png" alt=""/>
+    </div>
+</div>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //获取鼠标要进入的a标签
+
+    //先获取最外面的div
+    var aObj=my$("node_small").getElementsByTagName("a")[0];
+    //为a注册鼠标进入
+    aObj.onmouseover=function () {
+        my$("er").className="erweima show";
+    };
+    //为a注册鼠标离开
+    aObj.onmouseout=function () {
+        my$("er").className="erweima hide";
+    };
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #dv {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="摇晃" id="btn">
+<input type="button" value="停止" id="btnStop">
+<div id="dv">
+    <img src="images/cangjingkong.jpg" width="150" height="200">
+    <img src="images/linzhiling.jpg" width="150" height="200">
+</div>
+<script src="common.js"></script>
+<script>
+//    var flag="";
+    var timeId="";
+    my$("btn").onclick = function () {
+        if (my$("dv").style.top==0) {
+            timeId = window.setInterval(function () {
+                var x = Math.random() * 100 + 1;
+                var y = Math.random() * 100 + 1;
+                my$("dv").style.left = x + "px";
+                my$("dv").style.top = y + "px";
+            }, 100);
+        }
+    };
+
+    my$("btnStop").onclick = function () {
+        window.clearInterval(timeId);
+   //     flag=1;
+    };
+
+</script>
+</body>
+</html>

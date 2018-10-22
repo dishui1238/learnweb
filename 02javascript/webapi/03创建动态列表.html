@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+
+        ul {
+            list-style: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="添加到列表" id="btn"/>
+<div id="div"></div>
+<script src="common.js"></script>
+<script>
+    var poet = ["百尺朱楼临大道", "楼外轻雷", "不间昏和晓", "独倚栏杆人窈窕",
+        "闲中数尽行人小", "一霎车尘生树杪", "陌上楼头", "都向尘中老",
+        "薄晚西风吹雨到", "明朝又是伤流潦"];
+
+    //为按钮注册点击事件
+    my$("btn").onclick = function () {
+        //==========只准许追加一次，有则删除，无则创建============================
+//        if(my$("ul")){
+//            my$(div).removeChild(my$("ul"));
+//        }
+        //===========有则不创建，无则创建=========================================
+        if (!my$("ul")) {
+            //创建ul元素
+            var ulObj = document.createElement("ul");
+            ulObj.id = "ul";
+            //把元素追加到父级元素中
+            my$("div").appendChild(ulObj);
+            //动态创建li元素，加到ul中
+            for (var i = 0; i < poet.length; i++) {
+                var liObj = document.createElement("li");
+                //设置li之间的文字内容
+                liObj.innerHTML = poet[i];
+                ulObj.appendChild(liObj);
+                //为li添加鼠标进入事件
+                liObj.onmouseover = mouseoverHandle;
+                //为li添加鼠标离开事件
+                liObj.onmouseout = mouseoutHandle;
+            }
+        }
+        //循环的方式添加事件，推荐使用命名函数---节省空间
+        //不是循环的方式，推荐使用匿名函数
+        function mouseoverHandle() {
+            this.style.backgroundColor = "lightpink";
+        }
+
+        function mouseoutHandle() {
+            this.style.backgroundColor = "";
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+    <li>数学</li>
+    <li>语文</li>
+    <li>英语</li>
+    <li>物理</li>
+    <li>化学</li>
+</ul>
+<input type="button" value="清除" id="btn"/>
+    <script src="common.js"></script>
+    <script>
+        /*
+        * 总结：
+        * .getAttribute("属性名")=====获取自定义属性
+        * .setAttribute("属性名"，值)=====设置自定义属性
+        *
+        * */
+        //根据id获取ul标签,获取li标签
+        var lis = my$("ul").getElementsByTagName("li");
+        //循环遍历
+        for(var i=0;i<lis.length;i++){
+            //为每个li标签添加自定义属性
+            //lis[i].score=(i+3)*10;   //此方式，自定义的属性在DOM树上，不在标签中
+            lis[i].setAttribute("score",(i+3)*10);//自定义的属性在标签中
+        }
+
+        //点击按钮移除元素的自定义属性
+        my$("btn").onclick=function () {
+            for(var i=0;i<lis.length;i++){
+                lis[i].removeAttribute("score");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    li{
+        list-style: none;
+        line-height:40px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<ul>
+    <h2>踏 莎 行</h2>
+    <li>候馆梅残，</li>
+    <li>溪桥柳细。</li>
+    <li>草薰风暖摇征辔。</li>
+    <li>离愁渐远渐无穷，</li>
+    <li>迢迢不断如春水。</li>
+    <li>寸寸柔肠，</li>
+    <li>盈盈粉泪。</li>
+    <li>楼高莫近危栏倚。</li>
+    <li>平芜尽处是春山，</li>
+    <li>行人更在春山外。</li>
+</ul>
+</body>
+<script>
+    function my$(id) {
+        return document.getElementById(id)
+    }
+    //获取每个li标签
+    var lis=document.getElementsByTagName("li");
+    //遍历li标签
+    for(var i=0;i<lis.length;i++){
+        //鼠标进入li标签，变色   为li标签注册鼠标进入事件
+        lis[i].onmouseover=function () {
+          this.style.backgroundColor="lightpink";
+        };
+        //鼠标离开li标签，恢复颜色
+        //为li注册鼠标离开事件
+        lis[i].onmouseout=function () {
+            //恢复到该标签默认的颜色
+            this.style.backgroundColor="";
+        }
+    }
+
+</script>
+</html>

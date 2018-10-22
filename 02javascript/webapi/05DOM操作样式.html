@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .cls{
+        border: 2px solid red;
+    }
+</style>
+<body>
+<input type="button" value="显示效果" id="btn"/>
+<input type="button" value="隐藏" id="hidden">
+<!--<input type="button" value="隐藏" id="hidden">-->
+<div id="div"></div>
+
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    my$("btn").onclick = function () {
+        my$("div").style.width = "200px";
+        my$("div").style.height = "200px";
+        my$("div").style.backgroundColor = "hotpink";
+        my$("div").className="cls";     //为div添加类名
+
+    };
+    my$("hidden").onclick = function () {
+        if (this.value == "隐藏") {
+            my$("div").style.display = "none";
+            this.value = "显示";
+        } else if (this.value == "显示") {
+            my$("div").style.display = "block";
+            this.value = "隐藏";
+        }
+    };
+</script>
+</body>
+</html>

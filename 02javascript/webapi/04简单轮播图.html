@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        .box {
+            width: 730px;
+            height: 454px;
+            margin: 100px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .inner {
+            width: 730px;
+            height: 454px;
+            background-color: pink;
+            overflow: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner ul {
+            width: 1000%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .inner li {
+            float: left;
+        }
+
+        .square {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .square span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .square span.current {
+            background-color: orangered;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="box" class="box">
+        <div class="inner"><!--相框-->
+            <ul>
+                <li><a href="#"><img src="images/1.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="images/2.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="images/3.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="images/4.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="images/5.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="images/6.jpg" alt=""/></a></li>
+            </ul>
+            <div class="square">
+                <span class="current">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+            </div>
+        </div>
+    </div>
+    <script src="common.js"></script>
+    <script>
+        //================获取元素==========================================
+        var box = my$("box");
+        //获取相框
+        var inner = box.children[0];
+        var imgWidth = inner.offsetWidth;//相框宽度
+        //获取ul
+        var ulObj = inner.children[0];
+        //获取span标签
+        var spanObjs = inner.children[1].children;
+        //==================================================================
+        //为每个span标签注册鼠标进入事件
+        for (var i = 0; i < spanObjs.length; i++) {
+            //循环时，将每个span标签的索引值放入自定义属性index中
+            spanObjs[i].setAttribute("index", i);
+            //鼠标进入事件
+            spanObjs[i].onmouseover = function () {
+                //先清除掉span标签所有的背景颜色--移除类样式
+                for (var j = 0; j < spanObjs.length; j++) {
+                    spanObjs[j].removeAttribute("class");
+                }
+                //添加当前位置的额背景颜色
+                this.className = "current";
+                //获取当前鼠标进入span的索引
+                var index =this.getAttribute("index");
+                //调用函数
+                animate(ulObj, -index * imgWidth);
+            };
+        }
+
+        //=======================函数========================================
+        function animate(element, target) {
+            //先清理定时器，使其只产生一个定时器
+            clearInterval(element.timeId);
+            //获取当前位置，为数值型
+            var current = element.offsetLeft;
+            element.timeId = setInterval(function () {
+                //每次走的像素
+                var step = 9;
+                step = current < target ? step : -step;
+                current += step;
+                if (Math.abs(current - target) > Math.abs(step)) {
+                    element.style.left = current + "px";
+                } else {
+                    clearInterval(element.timeId);
+                    element.style.left = target + "px";
+                }
+            }, 20);
+        }
+
+    </script>
+</body>
+</html>

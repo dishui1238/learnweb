@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<img src="" alt="" id="img">
+	<script>
+	function f1(){
+		//获取当前时间
+		var dt=new Date();
+		//获取小时
+		var hour=dt.getHours();
+		//获取秒
+		var second=dt.getSeconds();
+		//格式化
+		hour=hour<10?"0"+hour:hour;
+		second=second<10?"0"+second:second;
+		//应用img的src属性
+		document.getElementById("img").src="meimei/"+hour+"_"+second+".jpg";
+	};
+	setInterval(f1,1000);
+		
+	</script>
+</body>
+</html>

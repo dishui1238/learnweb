@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        width: 377px;
+        height: 300px;
+        border: 1px solid #cccccc;
+        margin: 50px auto;
+
+    }
+
+    #hd span {
+        display: inline-block;
+        list-style: none;
+        border: 1px solid #cccccc;
+        background-color: #ffffff;
+        width: 90px;
+        height: 45px;
+        text-align: center;
+        line-height: 45px;
+        cursor: pointer;
+    }
+
+    #hd .current {
+        background-color: lightpink;
+    }
+
+    #bd {
+        width: 377px;
+        height: 255px;
+        background-color: #cccccc;
+    }
+
+    #bd li {
+        display: none;
+    }
+
+    #bd .current {
+        display: block;
+        height: 255px;
+        background-color: lightpink;
+    }
+</style>
+<body>
+<div id="box">
+    <div id="hd">
+        <span class="current">体育</span>
+        <span>电影</span>
+        <span>社会</span>
+        <span>娱乐</span>
+    </div>
+    <div id="bd">
+        <ul>
+            <li class="current">体育模块</li>
+            <li>电影模块</li>
+            <li>社会模块</li>
+            <li>娱乐模块</li>
+        </ul>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+    //鼠标放到span标签上，span&变色，并且.相对应的li添加current类名
+
+    //获取span标签，注册获取焦点事件，添加注册函数
+    var list = my$("bd").getElementsByTagName("li");
+    var spans = my$("hd").getElementsByTagName("span");
+    //遍历，获取每个span标签
+    for(var i=0;i<spans.length;i++){
+        //在点击之前就把索引保存在span标签中
+        spans[i].setAttribute("index",i);//================================
+        spans[i].onclick=function () {
+            //第一件事,所有的span的类样式全部移除
+            for(var j=0;j<spans.length;j++){
+                spans[j].removeAttribute("class");
+            }
+
+            //第二件事,当前被点击的span应用类样式
+            this.className="current";
+            //span被点击的时候获取存储的索引值
+            //alert(this.getAttribute("index"));
+            var num=this.getAttribute("index");//==============================
+
+            //获取所有的li标签,每个li标签先全部隐藏
+            for(var k=0;k<list.length;k++){
+                list[k].removeAttribute("class");
+            }
+            //当前被点击的span对应的li标签显示
+            list[num].className="current";
+        };
+    }
+</script>
+</body>
+</html>

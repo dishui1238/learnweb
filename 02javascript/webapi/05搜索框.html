@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #search {
+            padding-left: 2px;
+            height: 25px;
+            line-height: 25px;
+            color: lightgray;
+        }
+    </style>
+</head>
+<body>
+<input id="search" type="text" value="请输入搜索内容">
+</body>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //文本框获得焦点——若value为默认值，清空  否则不清空
+    //文本框失去焦点——若文本框为空，则显示默认值  否则不变
+
+    //为文本框注册获得焦点事件，添加时间处理函数
+    my$("search").onfocus = function () {
+        if (this.value == "请输入搜索内容") {
+            this.value = "";
+        } else {
+            this.style.color = "black";
+        }
+    };
+    //失去焦点事件
+    my$("search").onblur = function () {
+        if (this.value.length == 0) {
+            this.value = "请输入搜索内容";
+            this.style.color="";
+        }
+    };
+
+</script>
+</html>

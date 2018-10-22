@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cls {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="开/关灯" id="btn"/>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    my$("btn").onclick = function () {
+
+        document.body.className = document.body.className != "cls" ? "cls" : "";
+    }
+</script>
+</body>
+</html>

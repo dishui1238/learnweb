@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul li {
+        list-style: none;
+        height: 50px;
+        line-height: 50px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<div>
+    <ul id="ul">
+        <h2>蝶恋花</h2>
+        <li>谁道闲情抛掷久，</li>
+        <li>每到春来，</li>
+        <li>惆怅还依旧。</li>
+        <li>日日花前常病酒，</li>
+        <li>不辞镜里朱颜瘦。</li>
+        <li>河畔青芜堤上柳，</li>
+        <li>为问新愁，</li>
+        <li>何事年年有？</li>
+    </ul>
+</div>
+<script>
+    //通过节点方式，实现鼠标经过每个li标签变色
+    var uu = document.getElementById("ul");
+    //获取子节点
+    var nodes = uu.childNodes;
+    //用counts存储li标签的个数
+    var counts = 0;
+    //遍历所有的子节点
+    for (var i = 0; i < nodes.length; i++) {
+        //判断该子节点是否为li标签节点
+        if (nodes[i].nodeType == "1" && nodes[i].nodeName == "LI") {
+            counts++;
+            //是，注册鼠标经过事件
+            nodes[i].onmousemove = function () {
+                this.style.backgroundColor = "lightpink";
+            };
+            //注册鼠标离开事件
+            nodes[i].onmouseout=function () {
+                this.style.backgroundColor="";
+            }
+        }
+    }
+</script>
+</body>
+</html>

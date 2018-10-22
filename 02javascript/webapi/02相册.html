@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+
+        #imagegallery {
+
+            list-style: none;
+        }
+
+        #imagegallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+
+        #imagegallery li a img {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<h2>
+    美女画廊
+</h2>
+
+<ul id="imagegallery">
+    <li><a href="images/1.jpg" title="美女A">
+        <img src="images/1-small.jpg" width="100" alt="美女1"/>
+    </a></li>
+    <li><a href="images/2.jpg" title="美女B">
+        <img src="images/2-small.jpg" width="100" alt="美女2"/>
+    </a></li>
+    <li><a href="images/3.jpg" title="美女C">
+        <img src="images/3-small.jpg" width="100" alt="美女3"/>
+    </a></li>
+    <li><a href="images/4.jpg" title="美女D">
+        <img src="images/4-small.jpg" width="100" alt="美女4"/>
+    </a></li>
+</ul>
+
+
+<div style="clear:both"></div>
+<!--显示大图的-->
+<img id="image" src="images/placeholder.png" alt="" width="450"/>
+<p id="des">选择一个图片</p>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //点击a标签,把a标签中的href的属性值给id为image的src属性
+    //把a的title属性的值给id为des的p标签赋值
+
+    //获取所有的a标签
+    var aObjs=document.getElementsByTagName("a");
+    //从ul中遍历所有的a标签
+    for(var i=0;i<aObjs.length;i++){
+    //为a标签注册点击事件，添加时间处理函数
+        aObjs[i].onclick=function () {
+            //为id为image的标签的src赋值
+            my$("image").src=this.href;
+            //为p标签赋值
+            my$("des").innerText=this.title;
+            //阻止超链接默认的跳转
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

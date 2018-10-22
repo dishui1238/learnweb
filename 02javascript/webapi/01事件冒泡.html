@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+        }
+
+        #div3 {
+            width: 300px;
+            height: 300px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div id="div3">div3
+    <div id="div2">div2
+        <div id="div1">div1</div>
+    </div>
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    /*
+     *事件冒泡：多个元素嵌套，有层次关系，都注册了相同的事件，若触发里面的元素，
+     外面元素该事件自动触发
+     *事件阶段：eventPhase
+     属性值为1.事件捕获阶段 ：从外向内
+     属性值为2.事件目标阶段：所选择的元素
+     属性值为3.事件冒泡阶段：从内向外
+     默认为冒泡阶段，很少用捕获阶段
+     *阻止事件冒泡
+      ① window.event.cancelBubble=true; 火狐不支持
+      ②e.stopPropagation();     e为传入函数的参数   IE8不支持
+      window和e都是时间参数对象，前者为IE标准，后者为火狐标准
+      事件参数e在IE中不存在，此时用window.event来代替e
+     */
+    /*my$("div1").onclick=function () {
+     console.log(this.id);
+     };
+     my$("div2").onclick=function () {
+     console.log(this.id);
+     };
+     my$("div3").onclick=function (e) {
+     console.log(this.id);
+     e.stopPropagation();
+     };*/
+    //同时为三个div注册点击事件  对象.forEach(回调函数)
+    var objs = [my$("div1"), my$("div2"), my$("div3")];
+    objs.forEach(function (ele) {
+        //console.log(ele);
+        // 返回<div id="div1">div1</div>
+        //<div id="div2">div2<div id="div1">div1</div></div>
+        //<div id="div3">div3<div id="div2">div2<div id="div1">div1</div></div></div>
+        ele.addEventListener("click",function (e) {
+           console.log(this.id+"========"+e.eventPhase);
+        },true);//false--冒泡阶段    true--捕获阶段
+    });
+</script>
+</html>

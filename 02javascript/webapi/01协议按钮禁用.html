@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //页面加载完毕后执行
+    window.onload = function () {
+        var times = 5;
+        var timeId = setInterval(function () {
+            times--;
+            document.getElementById("btn").value = "请仔细阅读协议(" + times + ")";
+            if (times <= 0) {
+                clearInterval(timeId);
+                document.getElementById("btn").disabled = false;
+                document.getElementById("btn").value = "同意";
+            }
+        }, 1000);
+    };
+</script>
+<textarea name="texta" cols="30" rows="10" disabled="disabled" style="resize: none">用户协议</textarea>
+
+<div>
+    <input type="button" value="请仔细阅读协议(5)" disabled="disabled" id="btn"/>
+</div>
+</body>
+</html>
