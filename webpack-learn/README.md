@@ -30,11 +30,11 @@
       
      -  `npm install webpack --save-dev` 或 `npm install webpack -D`//安装最新版本webpack
       `npm install --save-dev webpack@<version>`//安装指定版本
-      [step1](./src/imgs/step1.jpg)
+      [step1](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1.JPG)
 
      - 如果你webpack安装的是4+以上的版本，还需要安装webpack-cli,此工具用于在命令行中运行 webpack
      ` npm install webpack-cli -D `
-     [step1-1](./src/imgs/step1-1.jpg)
+     [step1-1](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1-1.JPG)
 
    * 注意 *
    > 官方不推荐全局安装 webpack。这会将你项目中的 webpack 锁定到指定版本，并且在使用不同的 webpack 版本的项目中，可能会导致构建失败。
@@ -46,4 +46,4 @@
 2. 目录架构
 
 - 现在我们将创建以下目录结构、文件和内容，将“源”代码(/src)从我们的“分发”代码(/dist)中分离出来。“源”代码是用于书写和编辑的代码。“分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载
-[目录架构](./src/imgs/schema.jpg)
+[目录架构](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/schema.JPG)
