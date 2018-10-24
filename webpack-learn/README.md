@@ -59,6 +59,7 @@
 
 - webpack4.x中webpack.config.js这样的配置文件不是必须的。 
 - 默认入口文件是./src/index.js，默认输出文件./dist/main.js。
+- Webpack 4 配置, 必须配置 mode 属性， 可选值有 development,production,none, 开发模式和发布模式, 插件默认内置
  
 * 注意 *
 
@@ -72,3 +73,75 @@
 
 - 现在我们将创建以下目录结构、文件和内容，将“源”代码(/src)从我们的“分发”代码(/dist)中分离出来。“源”代码是用于书写和编辑的代码。“分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载
 ![目录架构](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/schema.JPG)
+
+# webpack 使用
+
+## webpack.config.js 配置文件
+
+```javascript
+const path = require('path')
+module.exports = {
+    // 入口文件
+    entry:path.join(__dirname,'./src/index.js'),
+    // 指定打包好的文件输出的目录
+    output:{
+        path:path.join(__dirname,'./dist'),
+        filename:'main.js'
+    }
+}
+```
+
+## webpack-dev-server
+
+功能：监听代码的改变，自动打包编译
+
+### 安装
+
+1. `npm i webpack-dev-server -D `把工具安装到项目的本地开发依赖
+*** 注意：webpack-dev-server 依赖于 Webpack ,所以项目本地必须安装 webpack ***
+
+> webpack-dev-server 帮我们打包生成的 main.js 并没有存放到实际的物理磁盘中，而是直接托管到电脑的内存中，所以在项目根目录中，根本找不到打包好的 main.js
+
+> 我们可以认为，web-dev-server 把打包好的文件，以一种虚拟的形式托管到项目根目录中，虽然我们看不到它，好处:速度快
+
+### 配置
+
+#### 1. 在 package.json 文件 scripts 中配置
+> ` "start":"webpack-dev-server --mode development" `，默认8080端口
+> ` "start":"webpack-dev-server --mode development --port 3000"  `,自定义端口
+使用 ` npm start `启动 webpack-dev-server 
+
+<font color=red>--open并没有在浏览器中打开，不起作用？？？<font>
+```
+--open：                     //打开默认浏器，index.html
+--config  webpack.config.js //运行webpack。cofig.js文件
+--hot：        //实现热替换，不是每次都生成一个新的文件，而是生成一个补丁(打补丁)&&浏览器页面无刷新加载
+--inline:                      //实现自更新
+--quiet                       //  控制台中不输出打包的信息
+--compress                      //开启gzip压缩
+--progress                    //显示打包的进度
+--colors:                    //进度用颜色表示
+--contentBase src           //与--open连用，直接打开src目录下的index.html文件
+```
+
+![启动webpack-dev-server](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/webpack-dev-server.JPG)
+
+#### 2. 配置 webpack-dev-server 的第二种方式(相对上一种麻烦些)
+
+在 webpack.config.js 中配置
+```javascript
+const webpack = require('webpack')
+devServer:{
+        open:true,  //自动打开浏览器
+        port:3000,  //设置启动端口
+        contentBase:'src',  //指定托管的根目录
+        hot:true        //启用热更新
+    },
+// 配置插件的节点
+plugins:[
+    // new 一个热更新的模块对象
+    new webpack.HotModuleReplacementPlugin()
+]
+```
+<font color=red>并没有在浏览器中打开，不起作用？？？<font>
+
