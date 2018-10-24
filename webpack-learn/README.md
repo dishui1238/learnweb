@@ -30,11 +30,11 @@
       
      -  `npm install webpack --save-dev` 或 `npm install webpack -D`//安装最新版本webpack
       `npm install --save-dev webpack@<version>`//安装指定版本
-    ![第一步](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1.JPG)
+![第一步](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1.JPG)
 
      - 如果你webpack安装的是4+以上的版本，还需要安装webpack-cli,此工具用于在命令行中运行 webpack
      ` npm install webpack-cli -D `
-    ![第一步](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1-1.JPG)
+![第一步](https://github.com/dishui1238/learnweb/blob/master/webpack-learn/src/imgs/step1-1.JPG)
 
    * 注意 *
    > 官方不推荐全局安装 webpack。这会将你项目中的 webpack 锁定到指定版本，并且在使用不同的 webpack 版本的项目中，可能会导致构建失败。
