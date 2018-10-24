@@ -145,3 +145,24 @@ plugins:[
 ```
 <font color=red>并没有在浏览器中打开，不起作用？？？<font>
 
+## html-webpack-plugin
+
+### 安装
+npm i html-webpack-plugin -D
+
+### 在webpack.config.js中 配置
+
+```javascript
+const htmlWebPlugin = require('html-webpack-plugin')
+
+plugins:[
+        // 创建一个在内存中生成HTML的插件
+        new htmlWebPlugin({
+            template:path.join(__dirname,'./src/index.html'),//指定模板页面
+            filename:'index.html'   //指定生成页面的名称
+        })
+    ]
+```
+**作用**：
+- 自动在内存中根据指定页面生成一个内存页面
+- 当使用了 html-webpack-plugin 之后，我们不需要手动引用 main.js ，因为插件会自动引用并插入到DOM元素中去
