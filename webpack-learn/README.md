@@ -2,15 +2,15 @@
 
 ## 在网页中会引用哪些常见的静态资源？
 + JS
- - .js  .jsx  .coffee  .ts（TypeScript  类 C# 语言）
+   - .js  .jsx  .coffee  .ts（TypeScript  类 C# 语言）
 + CSS
- - .css  .less   .sass  .scss
+   - .css  .less   .sass  .scss
 + Images
- - .jpg   .png   .gif   .bmp   .svg
+   - .jpg   .png   .gif   .bmp   .svg
 + 字体文件（Fonts）
- - .svg   .ttf   .eot   .woff   .woff2
+   - .svg   .ttf   .eot   .woff   .woff2
 + 模板文件
- - .ejs   .jade  .vue【这是在webpack中定义组件的方式，推荐这么用】
+   - .ejs   .jade  .vue【这是在webpack中定义组件的方式，推荐这么用】
 
 ## 网页中引入静态资源多了以后产生的问题
 
@@ -206,7 +206,7 @@ webpack 默认只能打包处理 JS 类型的文件，如要处理其他非 JS �
 
 1. 运行`npm i style-loader css-loader -D`
 2. 修改`webpack.config.js`这个配置文件：
-```json
+```JavaScript
 module: { // 用来配置第三方loader模块的
         rules: [ // 文件的匹配规则
             { test: /\.css$/, use: ['style-loader', 'css-loader'] }//处理css文件的规则
@@ -245,16 +245,16 @@ module: { // 用来配置第三方loader模块的
 { test: /\.(png|jpg|gif)$/, use: 'url-loader' }
 ```
 3. 可以通过`limit`指定进行base64编码的图片大小；只有小于指定字节（byte）的图片才会进行base64编码：
-```json
+```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=43960' },
 ```
 图片名字会改变为url(e7445c675fefc4a0a3ee3a00d4edecdd.jpg)，前时一串哈希值（32位），以确保图片名称不会重复，如想要不改变名称则可使用（但当有相同名称的图片时，后者会覆盖前者）：
-```json
+```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=43960&name=[name].[ext]' }
 ```
 
 在原有的名称之前加上hash值的前8位
-```json
+```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=43960&name=[hash:8]-[name].[ext]' }
 ```
 
@@ -275,5 +275,5 @@ module: { // 用来配置第三方loader模块的
 5. **注意：语法插件`babel-preset-es2015`可以更新为`babel-preset-env`，它包含了所有的ES相关的语法；**
 
 ## 相关文章
-[babel-preset-env：你需要的唯一Babel插件](https://segmentfault.com/p/1210000008466178)
-[Runtime transform 运行时编译es6](https://segmentfault.com/a/1190000009065987)
+- [babel-preset-env：你需要的唯一Babel插件](https://segmentfault.com/p/1210000008466178)
+- [Runtime transform 运行时编译es6](https://segmentfault.com/a/1190000009065987)
