@@ -27,5 +27,13 @@ module.exports = {
             template:path.join(__dirname,'./src/index.html'),//指定模板页面
             filename:'index.html'   //指定生成页面的名称
         })
-    ]
+    ],
+    module: { // 用来配置第三方loader模块的
+        rules: [ // 文件的匹配规则
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },//处理css文件的规则
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
+            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=20' }
+        ]
+    }
 }

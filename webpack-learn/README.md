@@ -2,15 +2,15 @@
 
 ## 在网页中会引用哪些常见的静态资源？
 + JS
-   - .js  .jsx  .coffee  .ts（TypeScript  类 C# 语言）
+   + .js  .jsx  .coffee  .ts（TypeScript  类 C# 语言）
 + CSS
-   - .css  .less   .sass  .scss
+   + .css  .less   .sass  .scss
 + Images
-   - .jpg   .png   .gif   .bmp   .svg
+   + .jpg   .png   .gif   .bmp   .svg
 + 字体文件（Fonts）
-   - .svg   .ttf   .eot   .woff   .woff2
+   + .svg   .ttf   .eot   .woff   .woff2
 + 模板文件
-   - .ejs   .jade  .vue【这是在webpack中定义组件的方式，推荐这么用】
+   + .ejs   .jade  .vue【这是在webpack中定义组件的方式，推荐这么用】
 
 ## 网页中引入静态资源多了以后产生的问题
 
