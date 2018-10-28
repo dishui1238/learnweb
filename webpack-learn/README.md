@@ -232,6 +232,7 @@ module: { // 用来配置第三方loader模块的
 ```
 
 ## 使用webpack打包scss文件
+
 1. 运行`npm i sass-loader node-sass --save-dev`
 2. 在`webpack.config.js`中添加处理sass文件的loader模块：
 ```
@@ -239,12 +240,15 @@ module: { // 用来配置第三方loader模块的
 ```
 
 ## 使用webpack处理css中的路径
+
+*默认情况下，webpack 无法处理 css 文件中的 url 路径，不管是文件还是字体库*
+
 1. 运行`npm i url-loader file-loader --save-dev`
 2. 在`webpack.config.js`中添加处理url路径的loader模块：
 ```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader' }
 ```
-3. 可以通过`limit`指定进行base64编码的图片大小；只有小于指定字节（byte）的图片才会进行base64编码：
+- 可以通过`limit`指定进行base64编码的图片大小；只有小于指定字节（byte）的图片才会进行base64编码：
 ```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=43960' },
 ```
@@ -257,8 +261,13 @@ module: { // 用来配置第三方loader模块的
 ```
 { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=43960&name=[hash:8]-[name].[ext]' }
 ```
+----------------
+
+**字体图标***
+
 
 ## 使用babel处理高级JS语法
+
 1. 运行`cnpm i babel-core babel-loader babel-plugin-transform-runtime --save-dev`安装babel的相关loader包
 2. 运行`cnpm i babel-preset-es2015 babel-preset-stage-0 --save-dev`安装babel转换的语法
 3. 在`webpack.config.js`中添加相关loader模块，其中需要注意的是，一定要把`node_modules`文件夹添加到排除项：
