@@ -19,6 +19,12 @@
 2. 默认显示的缩放比例和PC端保持1.0
 3. 不准许影虎自行缩放网页
 
+### 标准适配方案
 
+```html
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+```
+
+### 非主流适配方案
 
 
