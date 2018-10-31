@@ -1,0 +1,67 @@
+.lt_layout {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.lt_layout .lt_topbar {
+    background-color: #006699;
+    height: 45px;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    line-height: 45px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-style: normal;
+}
+
+.lt_layout .lt_topbar a {
+    color: #ffffff;
+    font-size: 16px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.lt_layout .lt_tabs {
+    background-color: #006699;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    z-index: 999;
+}
+
+.lt_layout .lt_container {
+    width: 100%;
+    height: 100%;
+    margin: 45px 0;
+    position: relative;
+}
+.lt_layout .lt_container .mui-scroll-wrapper{
+    position: absolute;
+    height: 100%;
+}
+.lt_container .mui-scroll-wrapper .mui-scroll{
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+}
+.lt_tabs a{
+    width: 25%;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    float: left;
+    padding: 10px 0;
+}
+.lt_tabs a span{
+    display: block;
+    padding-top: 5px;
+    font-size: 12px;
+    font-style: normal;
+}

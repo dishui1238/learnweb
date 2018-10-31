@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <!-- 使用下面这段代码使用的是Edge 。模式Edge 模式告诉 IE 以最高级模式渲染文档，也就是任何 IE 版本都以当前版本所支持的最高级标准模式渲染，避免版本升级造成的影响。简单的说，就是什么版本 IE 就用什么版本的标准模式渲染。 -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- ios 是否创建快捷启动方式 -->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- ios 系统顶部通知栏 黑色 -->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!-- 遇到数字不要转换为电话号码的格式 -->
+    <meta content="telephone=no" name="format-detection">
+    <title>乐淘</title>
+    <title>Document</title>
+
+    <meta name="description" content="乐淘是中国最大的正品运动鞋、皮鞋网上专卖。乐淘网经营的品牌包括耐克、阿迪达斯、李宁、匡威等国内外知名品牌的篮球鞋,板鞋,休闲鞋,跑步鞋,帆布...">
+    <meta name="Keywords" content="乐淘 乐淘鞋城 买鞋子 上乐淘 运动鞋 篮球鞋 帆布鞋 跑步鞋 男鞋 女鞋 足球鞋 休闲鞋 凉鞋 户外鞋 布洛克 高跟鞋 单鞋 豆豆鞋 乐福鞋 牛津鞋 凉拖 皮鞋 短靴 长靴 登山鞋 徒步鞋 硫化鞋 训练鞋 溯溪鞋 越野鞋 板鞋 足球鞋 网球鞋 赛车鞋 雪地靴 马丁靴 商务 英伦">
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="assets/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="assets/fa/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <div class="lt_layout">
+        <header class="lt_topbar">
+            <span>乐淘云购</span>
+            <a class="icon_search fa fa-search" href="search.html"></a>
+        </header>
+        <div class="lt_container">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <!-- 轮播图 -->
+                    <div id="slider" class="mui-slider">
+                        <div class="mui-slider-group mui-slider-loop">
+                            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                <a href="#">
+                                    <img src="./images/banner6.png">
+                                </a>
+                            </div>
+                            <!-- 第一张 -->
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="./images/banner1.png">
+                                </a>
+                            </div>
+                            <!-- 第二张 -->
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="./images/banner2.png">
+                                </a>
+                            </div>
+                            <!-- 第三张 -->
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="./images/banner3.png">
+                                </a>
+                            </div>
+                            <!-- 第四张 -->
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="./images/banner4.png">
+                                </a>
+                            </div>
+                            <!-- 第五张 -->
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="./images/banner5.png">
+                                </a>
+                            </div>
+
+                            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                <a href="#">
+                                    <img src="./images/banner6.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mui-slider-indicator">
+                            <div class="mui-indicator mui-active"></div>
+                            <div class="mui-indicator"></div>
+                            <div class="mui-indicator"></div>
+                            <div class="mui-indicator"></div>
+                            <div class="mui-indicator"></div>
+                            <div class="mui-indicator"></div>
+                        </div>
+                    </div>
+                    <!-- 导航 -->
+                    <div class="lt_nav mui-clearfix">
+                        <a href="#"><img src="./images/nav1.png"></a>
+                        <a href="#"><img src="./images/nav2.png"></a>
+                        <a href="#"><img src="./images/nav3.png"></a>
+                        <a href="#"><img src="./images/nav4.png"></a>
+                        <a href="#"><img src="./images/nav5.png"></a>
+                        <a href="#"><img src="./images/nav6.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="lt_tabs">
+            <a class="tab_home fa fa-home now" href="index.html"><span>首页</span></a>
+            <a class="tab_cate fa fa-bars" href="cate.html"><span>分类</span></a>
+            <a class="tab_cart fa fa-shopping-cart" href="cart.html"><span>购物车</span></a>
+            <a class="tab_user fa fa-user" href="user/index.html"><span>会员中心</span></a>
+        </footer>
+    </div>
+
+
+
+    <script src="./assets/mui/js/mui.min.js"></script>
+    <script src="./assets/zepto/zepto.min.js"></script>
+    <script src="./assets/artTemplate/template-native.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/common.js"></script>
+</body>
+
+</html>
