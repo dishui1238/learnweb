@@ -1,0 +1,12 @@
+{
+  "name": "Vue",
+  "version": "1.0.0",
+  "description": "+ 经典的多页面\r    - 每个页面都需要重新加载渲染，速度慢\r    - 前后端糅合，开发维护效率低下\r    - 有利于SEO搜索引擎搜索（蜘蛛会爬链接）",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
