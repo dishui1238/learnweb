@@ -95,6 +95,7 @@ var vm = new Vue({
 
 *除了 vue-resource 之外，还可以使用 `axios` 的第三方包实现实现数据的请求*
 *vue-resource依赖于vue，要先加载vue包*
+*vue-resource挂载了 $http*
 
 1. 之前的学习中，如何发起数据请求？
 2. 常见的数据请求类型？  get  post jsonp
@@ -182,6 +183,12 @@ jsonpInfo() { // JSONP形式从服务器获取数据
   });
 }
 ```
+
+9. 配置接口的根域名 root
+`Vue.http.options.root='http://vue.studyit.io/'`
+
+10. 全局配置 emulateJSON 选项（post请求）
+`Vue.http.options.emulateJSON=true`
 
 ### [使用第三方 CSS 动画库](https://cn.vuejs.org/v2/guide/transitions.html#自定义过渡类名)
 1. 导入动画类库：

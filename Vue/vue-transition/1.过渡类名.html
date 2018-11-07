@@ -1,0 +1,73 @@
+<!-- 功能：点击按钮让 h3 显示，再点击隐藏 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*================= 控制 transition ============ */
+        /* 进入之前和离开之后的状态 */
+        .v-enter,
+        .v-leave-to{
+           opacity: 0; 
+           transform: translateX(80px);
+        }
+        /* 入场和离场动画的时间段 */
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 1s ease;
+        }
+
+        /*================= 控制 transition name=vv ============ */
+        /* 进入之前和离开之后的状态 */
+        .vv-enter,
+        .vv-leave-to{
+           opacity: 0; 
+           transform: translateY(100px);
+        }
+        /* 入场和离场动画的时间段 */
+        .vv-enter-active,
+        .vv-leave-active{
+            transition: all 1s ease;
+        }
+    </style>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../lists-crud/node_modules/animate.css/animate.css">
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle1" @click="flag=!flag">
+        <transition>
+            <h3 v-if="flag">隐藏/显示H3</h3>
+        </transition>
+        <!-- name的使用 -->
+        <input type="button" value="toggle2" @click="flag=!flag">
+        <transition name="vv">
+            <h3 v-if="flag">隐藏/显示H33</h3>
+        </transition>
+        <!-- 使用第三方 animate.css 类库 -->
+        <input type="button" value="toggle3" @click="flag=!flag">
+        <transition 
+        enter-active-class="animated bounceIn" 
+        leave-active-class="animated bounceOut" 
+        :duration="{enter:200,leave:1000}">
+            <h3 v-if="flag">隐藏/显示H33</h3>
+        </transition>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

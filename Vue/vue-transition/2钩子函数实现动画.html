@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+
+    <style>
+        .ball{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="快到碗里来" @click="flag=!flag">
+        <transition 
+        @before-enter="beforeEnter" 
+        @enter="enter" 
+        @after-enter="afterEnter"
+        >
+            <div class="ball" v-if="flag"></div>
+        </transition>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            },
+            methods: {
+                beforeEnter(el){
+                    el.style.transform="translate(0,0)"
+                },
+                enter(el,done){
+                    // 这句话没有实际作用，但是不写的话，没有动画效果 el.offsetHeight或者el.offsetTop
+                    el.offsetWidth
+                    el.style.transform = "translate(150px,350px)"
+                    el.style.transition = 'all ease 1s'
+                    // done是afterEnter函数的引用，动画完成后立即调用afterEnter()
+                    done()
+                },
+                afterEnter(el){
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
