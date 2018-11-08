@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+    <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+    <style>
+        .router-link-active{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <a href="#/login">登录</a> -->
+        <!-- <a href="#/register">注册</a> -->
+
+        <!-- 使用 router-link 组件来导航，默认渲染为a标签 -->
+        <!-- router-link-exact-active router-link-active -->
+        <router-link to="/login" tag="span">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <!-- 占位符：将组件展示到其中 -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        var login = {
+            template: '<h1>登录组件</h1>'
+        }
+        var register = {
+            template: '<h1>注册组件</h1>'
+        }
+        // 创建路由对象
+        const routerObj = new VueRouter({
+            routes: [ //路由匹配规则有两个属性
+                // 属性1.path 表示监听那个路由链接地址
+                // 属性2.component 需要展示的组件,值必须是一个组件的模板对象，不能是组件的引用名称
+                {
+                    path:'/',
+                    redirect:'/login'   //重定向
+                },
+                {
+                    path: '/login',
+                    component: login
+                },
+                {
+                    path:'/register',
+                    component:register
+                }
+            ],
+            linkActiveClass:'myactive'//自定义类名
+        })
+        var app = new Vue({
+            el: '#app',
+            router:routerObj,//将路由规则对象注册到vue实例上，用来监听URL地址的变化
+            data: {},
+            methods: {},
+            filters: {},
+            components: {},
+        })
+    </script>
+</body>
+
+</html>
