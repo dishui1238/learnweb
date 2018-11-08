@@ -49,7 +49,11 @@
                     done()
                 },
                 afterEnter(el){
+                    // 直接跳过后半场动画，true->false
                     this.flag = !this.flag
+                    
+                    // el,style.opacity = 0.5
+                    // Vue 把完整的动画，用钩子函数拆分成两个部分
                 }
             }
         })
