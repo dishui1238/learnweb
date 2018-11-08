@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="../lists-crud/node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+  <div id="app">
+    <comment-box @func="loadComments"></comment-box>
+
+    <ul class="list-group">
+      <li class="list-group-item" v-for="item in list" :key="item.id">
+        <span class="badge">评论人：{{ item.user }}</span>
+        {{ item.comment }}
+      </li>
+    </ul>
+
+  </div>
+
+  <template id="temp1">
+    <div class="form-group">
+      <label>评论人：</label>
+      <input type="text" v-model="user">
+      <label>评论内容：</label>
+      <input type="text" v-model="comment">
+      <input type="button" value="发表" @click="send">
+    </div>
+  </template>
+  <script>
+    var commentBox = {
+      data() {
+        return {
+          user: '',
+          comment: '',
+        }
+      },
+
+      methods: {
+        send() {
+          // 1.评论数据存放到 localStorage 中 localStorage.setItem()
+
+          // 2.组织出最新的评论数据对象 
+          // localStorage 只支持存放字符串，先调用JSON.stringify
+          // 保存最新评论之前，先获取到之前的数据(string)，转换为一个数组对象，再把最新的评论push到数组中
+
+          // 3.存放数据
+
+          var comment = {
+            id: Date.now(),
+            user: this.user,
+            comment: this.comment
+          }
+
+          var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+          list.unshift(comment)
+          localStorage.setItem('cmts', JSON.stringify(list))
+          this.user = ''
+          this.comment = ''
+
+          this.$emit('func')
+        }
+      },
+      template: '#temp1',
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+
+        list: [{
+            id: Date.now() + 1,
+            user: '李白',
+            comment: '天生我材必有用'
+          },
+          {
+            id: Date.now() + 2,
+            user: '李清照',
+            comment: '只恐双溪舴艋舟，载不动许多愁'
+          },
+          {
+            id: Date.now() + 3,
+            user: '曹雪芹',
+            comment: '花谢花飞花满天'
+          },
+          {
+            id: Date.now() + 4,
+            user: '曹雪芹',
+            comment: '红消香断有谁怜'
+          }
+        ]
+      },
+      beforeCreate() {
+
+      },
+      created() {
+        this.loadComments()
+      },
+      methods: {
+        loadComments() { // 从本地的 localStorage 中，加载评论列表
+          var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+          this.list = list
+        }
+      },
+      filters: {},
+      components: {
+        commentBox
+      }
+    })
+  </script>
+</body>
+
+</html>

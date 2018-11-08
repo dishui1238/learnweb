@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件将方法传递给子组件：通过事件绑定机制 v-on -->
+        <com2 @func="show"></com2>
+    </div>
+    <template id="temp">
+        <div>
+            <h1>子组件</h1>
+            <input type="button" value="子组件按钮" @click="myclick">
+        </div>
+    </template>
+    <script>
+        var com2 = {
+            template: '#temp',
+            methods: {
+                myclick() {
+                    // 拿到父组件传递的方法,并向父组件传参
+                    this.$emit('func', 123)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                show(data) {
+                    console.log('父组件的show方法' + data)
+                }
+            },
+            components: {
+                com2: com2
+            }
+        })
+    </script>
+</body>
+
+</html>

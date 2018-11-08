@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 获取DOM元素 -->
+    <div id="app">
+        <input type="button" value="获取元素" @click="getElement">
+        <login ref="login"></login>
+        <h3 id="h3" ref="h3">需要获取的内容</h3>
+
+    </div>
+
+    <script>
+        var login = {
+            template: '<h1>登录组件</h1>',
+            data() {
+                return {
+                    msg: 'son msg'
+                }
+            },
+            methods: {
+                show() {
+                    console.log('子组件的show方法')
+                }
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                getElement() {
+                    console.log(document.getElementById('h3').innerText)
+                    console.log(this.$refs.h3.innerText)
+                    console.log(this.$refs.login.msg)//获取子组件的数据
+                    this.$refs.login.show()//获取子组件的方法
+                }
+            },
+            filters: {},
+            components: {
+                login
+            },
+        })
+    </script>
+</body>
+
+</html>
