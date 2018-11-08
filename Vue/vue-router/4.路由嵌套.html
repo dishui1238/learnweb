@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+  <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/account">account</router-link>
+    <router-view></router-view>
+  </div>
+
+  <template id="temp">
+    <div>
+      <h1>这是account组件</h1>
+      <router-link to="/account/login">登录</router-link>
+      <router-link to="/account/register">注册</router-link>
+      <router-view></router-view>
+    </div>
+  </template>
+
+  <script>
+    var account = {
+      template: '#temp'
+    }
+    var login = {
+      template: '<h3>登录</h3>'
+    }
+    var register = {
+      template: '<h3>注册</h3>'
+    }
+
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/account',
+          component: account,
+          children: [{
+              path: 'login',
+              component: login
+            },
+            {
+              path: 'register',
+              component: register
+            }
+          ]
+        },
+
+      ]
+    })
+    var app = new Vue({
+      el: '#app',
+      router: router,
+      data: {},
+      methods: {},
+      filters: {},
+      components: {},
+    })
+  </script>
+</body>
+
+</html>
