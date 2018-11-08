@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+  <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .header{
+      background-color: orange;
+      height: 80px;
+    }
+    h1{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      display: flex;
+      height: 800px;
+    }
+    .left{
+      background-color: #ccc;
+      flex: 2;
+    }
+    .main{
+      background-color: #991155;
+      flex: 8;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <router-view></router-view>
+    <div class="container">
+        <router-view name="left"></router-view>
+        <router-view name="main"></router-view>
+    </div>
+  </div>
+
+
+
+  <script>
+    var header = {
+      template: '<h1 class="header">Header头部区域</h1>'
+    }
+    var leftBox = {
+      template: '<h1 class="left">left侧边栏区域</h1>'
+    }
+    var main = {
+      template: '<h1 class="main">main主体区域</h1>'
+    }
+    const router = new VueRouter({
+      routes: [{
+        path: '/',
+        components: {
+          default: header,
+          left: leftBox,
+          main: main
+        }
+      }]
+    })
+
+    var app = new Vue({
+      el: '#app',
+      router: router,
+      data: {},
+      methods: {},
+      filters: {},
+      components: {},
+    })
+  </script>
+</body>
+
+</html>
