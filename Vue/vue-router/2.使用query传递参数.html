@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+    <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/login?id=10">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        var login = {
+            template: '<h1>登录组件--{{$route.query.id}}</h1>',
+            data(){
+                return{
+                    msg:'123'
+                }
+            },
+            created() {
+                console.log(this.$route.query.id)
+            },
+        }
+        var register = {
+            template: '<h1>注册组件</h1>'
+        }
+        const router = new VueRouter({
+            routes:[
+                {path:'/login',component:login},
+                {path:'/register',component:register}
+            ]
+        })
+        var app = new Vue({
+            el: '#app',
+            router:router,
+            data: {},
+            methods: {},
+            filters: {},
+            components: {},
+        })
+    </script>
+</body>
+
+</html>
