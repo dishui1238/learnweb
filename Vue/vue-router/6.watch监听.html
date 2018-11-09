@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+  <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="firstName">+
+    <input type="text" v-model="secondName">=
+    <input type="text" v-model="fullName">
+
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <router-view></router-view>
+  </div>
+
+  <script>
+    var login = {
+      template: '<h1>欢迎登录</h1>'
+    }
+    var register = {
+      template: '<h1>欢迎注册</h1>'
+    }
+    const router = new VueRouter({
+      routes: [{
+          path: '/login',
+          component: login
+        },
+        {
+          path: '/register',
+          component: register
+        }
+      ]
+    })
+    var app = new Vue({
+      el: '#app',
+      router,
+      data: {
+        firstName: '',
+        secondName: '',
+        fullName: ''
+      },
+      methods: {},
+      watch: {
+        // 当firstName值变化，立即触发function函数，函数有两个参数：newVal, oldVal
+        firstName: function (newVal, oldVal) {
+          console.log(newVal + '=======' + oldVal)
+          this.fullName = this.firstName + this.secondName
+        },
+        secondName: function () {
+          this.fullName = this.firstName + this.secondName
+        },
+        // 监测路由地址的改变
+        '$route.path':function(newVal, oldVal){
+          if(newVal=='/login'){
+            console.log('欢迎进入登录界面！')
+          }else{
+            console.log('欢迎进入注册界面！')
+          }
+        }
+      },
+      filters: {},
+      components: {},
+    })
+  </script>
+</body>
+
+</html>
