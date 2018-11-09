@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lists-crud/node_modules/vue/dist/vue.js"></script>
+  <script src="../lists-crud/node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="firstName">+
+    <input type="text" v-model="secondName">=
+    <!-- 计算属性的引用直接当做普通属性去引用 -->
+    <input type="text" v-model="fullName">
+    <p>{{fullName}}</p>
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        firstName: '',
+        secondName: '',
+      },
+      methods: {},
+      computed: { //计算属性； 
+        // 特点：当计算属性中所以来的任何一个 data 属性改变之后，都会重新触发 本计算属性 的重新计算，
+        // 从而更新 fullName 的值
+        // 注意：计算属性的求值结果会被缓存起来，方便下次直接使用
+        'fullName': function () {
+          return this.firstName + '-' + this.secondName
+        }
+      },
+      watch: {},
+      filters: {},
+      components: {},
+    })
+  </script>
+</body>
+
+</html>
