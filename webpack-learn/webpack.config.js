@@ -33,7 +33,9 @@ module.exports = {
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },//处理css文件的规则
             { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
             { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=20' }
+            { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=20' },
+            // 配置babel来转换高级JS语法
+            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
         ]
     }
 }

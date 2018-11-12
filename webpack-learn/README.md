@@ -128,7 +128,7 @@ module.exports = {
 
 > 这个时候访问webpack-dev-server启动的`http://localhost:8080/`网站，发现是一个文件夹的面板，需要点击到src目录下，才能打开我们的index首页，此时引用不到bundle.js文件，需要修改index.html中script的src属性为:`<script src="../idex.js"></script>`
 
-<font color=red>--open并没有在浏览器中打开，不起作用？？？<font>
+--open并没有在浏览器中打开，不起作用？？？
 
 ```
 --open：                     //打开默认浏器，index.html
@@ -167,7 +167,6 @@ plugins:[
 ]
 
 ```
-<font color=red>并没有在浏览器中打开，不起作用？？？<font>
 
 ## html-webpack-plugin
 
@@ -268,20 +267,26 @@ module: { // 用来配置第三方loader模块的
 
 ## 使用babel处理高级JS语法
 
-1. 运行`cnpm i babel-core babel-loader babel-plugin-transform-runtime --save-dev`安装babel的相关loader包
-2. 运行`cnpm i babel-preset-es2015 babel-preset-stage-0 --save-dev`安装babel转换的语法
-3. 在`webpack.config.js`中添加相关loader模块，其中需要注意的是，一定要把`node_modules`文件夹添加到排除项：
+> 在webpack中，默认只能处理一部分ES6的新语法，徐借鉴第三方loader
+1. 运行`npm i babel-core babel-loader babel-plugin-transform-runtime --save-dev`安装babel的相关loader包
+2. 运行`npm i babel-preset-env babel-preset-stage-0 --save-dev`安装babel转换的语法
+3. 在`webpack.config.js`中添加相关loader模块，其中需要注意的是，一定要把`node_modules`文件夹添加到排除项，否则会把
+node_modules中的JS文件全部打包编译：
 ```
 { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
 ```
-4. 在项目根目录中添加`.babelrc`文件，并修改这个配置文件如下：
-```
+4. 在项目根目录中添加`.babelrc`文件，这个文件属于JSON格式，必须符合JSON语法规范(不能写注释，字符串必须用双引号)，并修改这个配置文件如下：
+```json
 {
-    "presets":["es2015", "stage-0"],
-    "plugins":["transform-runtime"]
+    "presets":["env", "stage-0"],//语法
+    "plugins":["transform-runtime"] //插件
 }
 ```
 5. **注意：语法插件`babel-preset-es2015`可以更新为`babel-preset-env`，它包含了所有的ES相关的语法；**
+> babel-preset-env 是一个新的 preset，可以根据配置的目标运行环境（environment）自动启用需要的 babel 插件。
+> babel-preset-es2015、babel-preset-es2016。es2015 可以把 ES6 代码编译为 ES5，es2016 可以把 ES2016 代码编译为 ES6。babel-preset-latest 可以编译 stage 4 进度的 ECMAScript 代码。
+> 问题是我们几乎每个项目中都使用了非常多的 preset，包括不必要的。例如很多浏览器支持 ES6 的 generator，如果我们使用 babel-preset-es2015 的话，generator 函数就会被编译成 ES5 代码。
+> babel-preset-env 的工作方式类似 babel-preset-latest，唯一不同的就是 babel-preset-env 会根据配置的 env 只编译那些还不支持的特性。使用这个插件，你讲再也不需要使用 es20xx presets 了。
 
 ## 相关文章
 - [babel-preset-env：你需要的唯一Babel插件](https://segmentfault.com/p/1210000008466178)
