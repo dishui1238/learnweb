@@ -67,3 +67,30 @@ var vm = new Vue({
 </style>
 ```
 **scoped 当前样式适用于当前组件**
+
+### scoped属性选择器的实现原理
+
+`<h1 data-v-3e681ea0="">account组件</h1>`
+1. 通过 CSS 的选择器进行实现的
+
+## 使用 饿了么的 MintUI 组件
+
+[Github 仓储地址](https://github.com/ElemeFE/mint-ui)
+
+[Mint-UI官方文档](http://mint-ui.github.io/#!/zh-cn)
+1. 引入所有的组件
+```js
+import Vue from 'vue'
+// 导入app组件
+import app from './app.vue'
+// 导入所有的 MintUI 组件
+import MintUI from 'mint-ui'
+// 这里可以省略node_modules，会默认去里面找
+import 'mint-ui/lib/style.css'
+// 把所有的组件注册为全局组件
+Vue.use(MintUI)
+```
+
+2. 借助 babel-plugin-component，我们可以只引入需要的组件，以达到减小项目体积的目的。
+首先，安装 babel-plugin-component
+`npm install babel-plugin-component -D`

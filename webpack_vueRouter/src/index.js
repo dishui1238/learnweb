@@ -1,37 +1,20 @@
 import Vue from 'vue'
 // 导入app组件
- import app from './app.vue'
- import router from './router.js'
-// import VueRouter from 'vue-router'
-// // 导入组件
-// import account from './main/account.vue'
-// import goodsList from './main/goodsList.vue'
-// import login from './main/login.vue'
-// import register from './main/register.vue'
+import app from './app.vue'
+import router from './router.js'
+// 导入所有的 MintUI 组件
+// import MintUI from 'mint-ui'
 
-// Vue.use(VueRouter)
+import { Button, Cell } from 'mint-ui'
+// 这里可以省略node_modules，会默认去里面找
+import 'mint-ui/lib/style.css'
+import 'bootstrap/dist/css/bootstrap.css'
+// 把所有的组件注册为全局组件
+// Vue.use(MintUI)
 
-// 创建路由对象
-// const router = new VueRouter({
-//   routes: [{
-//       path: '/account',
-//       component: account,
-//       children: [{
-//           path: 'login',
-//           component: login
-//         },
-//         {
-//           path: 'register',
-//           component: register
-//         }
-//       ]
-//     },
-//     {
-//       path: '/goodsList',
-//       component: goodsList
-//     }
-//   ]
-// })
+Vue.component('mt-button', Button)
+Vue.component('mt-cell', Cell)
+
 
 var vm = new Vue({
   el: '#app',

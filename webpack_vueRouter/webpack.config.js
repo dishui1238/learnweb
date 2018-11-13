@@ -49,13 +49,18 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 use: 'url-loader?limit=20'
             },
+            // 处理 字体文件的 loader 
+            {
+                test: /\.(ttf|eot|svg|woff|woff2)$/,
+                use: 'url-loader'
+            },
             // 配置babel来转换高级JS语法
             {
                 test: /\.js$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
             },
-            {//处理.vue文件的loader
+            { //处理.vue文件的loader
                 test: /\.vue$/,
                 use: 'vue-loader'
             }
