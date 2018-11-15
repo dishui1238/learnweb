@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ES6介绍</title>
+</head>
+
+<body>
+  <h2>ES6-demo演示</h2>
+
+  <script>
+    // ======================= 1.Rest 参数：··· 表示动态的，不确定的
+    function sum(x, y, z) {
+      let total = 0;
+      if (x) total += x;
+      if (y) total += y;
+      if (z) total += z;
+      // 语言模板
+      console.log(`total:${total}`)
+    }
+    sum(1, 2, 3)
+
+    function sum2(...m) { //...m表示不确定参数的个数
+      let total = 0;
+      // i of m ==== 对 m 对象的遍历，把 m 中的每一个值放入 i 中
+      for (var i of m) {
+        total += i;
+      }
+      console.log(`total:${total}`)
+    }
+    sum2(1, 2, 3, 4, 5)
+
+    // ES6 方式
+    let sum3 = (...m) => {
+      let total = 0;
+      for (var i of m) {
+        total += i;
+      }
+      console.log(`total:${total}`)
+    }
+    sum3(1, 2, 3, 4, 5)
+
+    // ... 和数组结合称为函数的扩展，是一种运算符，拆解数组然后输出
+    var [x, y] = [4, 8]
+    console.log(...[4, 8]) //4 8
+
+    let arr1 = [1, 3];
+    let arr2 = [4, 8];
+    console.log("concat:" + arr1.concat(arr2)); ////concat:1,3,4,8
+    var arr = [...arr1, ...arr2];
+    console.log(arr); //[1, 3, 4, 8]
+
+    // 对号入座 
+    var [x, ...y] = [1, 2, 3, 4]; //x=1,y=[2,3,4]
+    let [a, b, c] = "ES6"; //a="E",b="s",C="6"
+    
+  </script>
+</body>
+
+</html>

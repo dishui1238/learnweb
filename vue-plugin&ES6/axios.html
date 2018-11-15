@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>axios讲解</title>
+  <script src="../imoocmall/node_modules/vue/dist/vue.js"></script>
+  <script src="../imoocmall/node_modules/axios/dist/axios.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <h2>axios插件讲解</h2>
+    <a href="javascript:;" @click="get">发送Get请求</a>
+    <a href="javascript:;" @click="post">发送Post请求</a>
+    <a href="javascript:;" @click="http">http方式</a>
+    <div>
+      <span>{{ msg }}</span>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        response: '',
+        msg: ''
+      },
+      mounted() {
+        // =================== axios 的全局拦截器
+        // 请求拦截
+        axios.interceptors.request.use(function(config){
+          console.log('拦截成功')
+          // 可以做一些 loading 的处理
+          return config;
+        })
+        // 拦截响应
+        axios.interceptors.response.use(function(response){
+
+          return response;
+        })
+      },
+      methods: {
+        get: function () {
+          axios.get("./data.json", {
+            params: { //传递参数
+              userId: '999'
+            },
+            headers: {
+              token: 'jack'
+            },
+            before: function () {
+              console.log('before init')
+            }
+          }).then(res => {
+            this.msg = res.data
+          }).catch(function (err) { //捕获失败信息
+            console.log('err init')
+          })
+        },
+
+        post: function () {
+          axios.post("./data.json", {
+            // 传递的参数
+            userId: '888'
+          }, {
+            headers: {
+              token: 'jack2'
+            }
+          }).then(res => {
+            this.msg = res.data
+          }).catch(function (err) {
+            console.log(err.message)
+          })
+        },
+
+        http: function () {
+          axios({
+            url:'./data.json',
+            // methods:'get',
+            methods:'post',
+            data:{//post请求携带参数的定义方式
+              userId:'110'
+            },
+            params:{//get请求携带参数的定义方式
+              userId:'120'
+            },
+            headers:{
+              token:'http-test'
+            }
+          }).then(res=>{
+            this.msg = res.data;
+          })
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
