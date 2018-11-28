@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" value="btn1">
+  <input type="button" value="btn2">
+  <input type="button" value="btn3">
+  <script>
+    //===========================================================================
+    console.log(name1) //undefined
+    // console.log(name2) //报错Uncaught ReferenceError: name2 is not defined
+    var name1 = 'crystal' //存在预解析
+    let name2 = 'dishui' //不存在预解析
+    // ============================================================================
+    // let btns = document.getElementsByTagName('input')
+    // for (var i = 0; i < btns.length; i++) {
+    //   var btn = btns[i]
+    //   btn.onclick = function () {
+    //     alert(i)
+    //   }
+    // }
+    // ====每个btn弹出的都是3，原因：点击事件会放到队列里进行执行，主程序不会等待
+    //解决：闭包,立即执行函数
+    let btns = document.getElementsByTagName('input')
+    for (var i = 0; i < btns.length; i++) {
+      var btn = btns[i];
+        (function (i) {
+          btn.onclick = function () {
+            alert(i)
+          }
+        })(i)
+    }
+  </script>
+</body>
+
+</html>

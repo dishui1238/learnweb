@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ==== 1 ======= Object.create() =========================
+    var obj1 = {
+      firstName: 'kobe',
+      lastName: 'bryant'
+    }
+    obj1 = Object.create(obj1, {
+      age: {
+        value: '30',
+        writable: true,
+        configurable: true,
+        enumerable: true
+      }
+    })
+    console.log(obj1.age) //30
+    obj1.age = '40'
+    console.log(obj1.age) //40
+    for (var i in obj1) {
+      console.log(i)
+    }
+    delete obj1.age
+    console.log(obj1.age) //undefined
+
+    // ==== 2 ====== Object.defineProperties(object,descriptors) ==============
+    var obj2 = {
+      firstName: 'kobe',
+      lastName: 'bryant'
+    }
+    Object.defineProperties(obj2, {
+      fullName: {
+        get: function () { // 获取扩展属性的值
+          return this.firstName + ' ' + this.lastName
+        },
+        set: function (data) { //监听扩展属性，当扩展属性发生变化时立即调用
+          console.log(data) //kobe bryant boss
+          this.firstName = data
+        }
+      }
+    })
+    console.log(obj2.fullName) //kobe bryant
+    obj2.fullName = 'kobeBoss'
+    console.log(obj2.fullName)
+
+    var obj = {
+      name: 'crystal',
+      age: 23,
+      get description() {
+        return `${this.name},${this.age} years old`
+      },
+      set description(data) {
+        this.name = data
+      }
+    }
+    console.log(obj.description) //crystal,23 years old
+    obj.description = 'hello everyone!'
+    console.log(obj.description) //hello everyone!,23 years old
+  </script>
+</body>
+
+</html>
