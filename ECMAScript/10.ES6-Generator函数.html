@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // yield 默认返回值是 undefined ，可通过next()传递参数，该参数作为启动时yield的返回值
+    function* myGenerator() {
+      console.log('开始执行')
+      let res = yield 'hello'
+      console.log(res) //aaa
+      console.log('暂停后，再次执行')
+      let result = yield 'generator'
+      console.log(result) //undefined
+    }
+
+    let MG = myGenerator()
+    console.log(MG)
+    console.log(MG.next()) //{value: "hello", done: false}
+    console.log(MG.next('aaa')) //{value: "generator", done: false}
+    console.log(MG.next()) //{value: undefined, done: true}
+  </script>
+</body>
+
+</html>

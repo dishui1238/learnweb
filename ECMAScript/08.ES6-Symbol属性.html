@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 创建symbol属性值
+    let symbol = Symbol();
+    let obj = {
+      name: 'crystal',
+      age: 23
+    };
+    obj[symbol] = 'hello';
+    console.log(obj)
+    for (let i in obj) {
+      console.log(i)//name age
+    }
+
+    let obj2 = Symbol()
+    let obj3 = Symbol()
+    console.log(obj2 == obj3) //false====唯一性
+    console.log(obj2) //Symbol()
+    console.log(obj3) //Symbol()
+
+    // 可以传入如唯一的标识以进行区分
+    let obj4 = Symbol('4')
+    let obj5 = Symbol('5')
+    console.log(obj4) //Symbol(4)
+    console.log(obj5) // Symbol(5)
+
+    // 可以去定义常量
+    const Person_key = Symbol('person_key')
+  </script>
+</body>
+
+</html>

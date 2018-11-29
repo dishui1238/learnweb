@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function myIterator(arr) {
+      let nextIndex = 0;
+      return {
+        next: function () {
+          return nextIndex < arr.length ? {
+            value: arr[nextIndex++],
+            done: false
+          } : {
+            value: arr[nextIndex++],
+            done: true
+          }
+        }
+      }
+    }
+    let arr = [1, 2, 3, 4]
+    let iteratorObj = myIterator(arr)
+    console.log(iteratorObj.next()) //1 false
+    console.log(iteratorObj.next()) //2 false
+    console.log(iteratorObj.next()) //3 false
+    console.log(iteratorObj.next()) //4 false
+    console.log(iteratorObj.next()) //undefined true
+
+    let arr2 = ['a', 'b', 'c', 'd', 'e']
+    for (let i of arr2) {
+      console.log(i)
+    }
+  </script>
+</body>
+
+</html>

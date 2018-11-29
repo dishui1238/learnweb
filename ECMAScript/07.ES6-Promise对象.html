@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let promise = new Promise((resolve, reject) => {
+
+    })
+
+    promise
+      .then(() => { //成功的回调
+
+      }, () => { //失败的回调
+
+      })
+
+    // 创建 xmlHttp 实例对象 
+    let xmlHttp = new XMLHttpRequest();
+    // 绑定监听 readyState
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === 4 && xmlHttp.status == 200) { //请求成功
+        console.log(xmlHttp.responseText)
+      } else {
+
+      }
+    }
+  </script>
+</body>
+
+</html>
