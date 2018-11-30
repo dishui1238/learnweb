@@ -25,6 +25,25 @@
     console.log(MG.next()) //{value: "hello", done: false}
     console.log(MG.next('aaa')) //{value: "generator", done: false}
     console.log(MG.next()) //{value: undefined, done: true}
+
+
+    // 对象的 Symbol.iterator 实现，指向遍历器对象
+    let obj = {
+      name: 'crystal',
+      age: 23
+    }
+    // for (let i of obj) { //报错！！
+    //   console.log(i)
+    // }
+    // 为对象人为的定义一个 iterator 接口
+    obj[Symbol.iterator] = function* test() {
+      yield 1
+      yield 2
+      yield 3
+    }
+    for (let i of obj) {
+      console.log(i)//1 2 3
+    }
   </script>
 </body>
 

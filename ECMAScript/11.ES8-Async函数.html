@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    async function foo() {
+      return new Promise(resolve => {
+        // setTimeout(() => {
+        //   resolve();
+        // }, 2000);
+
+        //等同于上面写法
+        setTimeout(resolve, 2000)
+      })
+    }
+
+
+    function test2() {
+      return '返回值'
+    }
+    async function test() {
+      console.log('开始执行', new Date().toTimeString());
+      // let result = await test2() 
+      let result = await foo()
+      console.log('执行完毕', new Date().toTimeString());
+      console.log(result) //undefined
+
+      let result2 = await Promise.resolve('promise')
+      console.log(result2) // promise
+      let result3 = await Promise.reject('失败的回调。。。')
+      console.log(result3) // 报错！！  Uncaught (in promise) 失败的回调。。。     
+    }
+    // test()
+
+
+    function timeout(ms) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, ms);
+        });
+      }
+      
+  </script>
+</body>
+
+</html>

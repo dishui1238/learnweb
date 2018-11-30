@@ -137,10 +137,10 @@ var obj = {
    + 循环遍历加监听
    + 使用 let 取代 var 是趋势
 ***js预解析***
-*在当前作用域下,js运行之前，会把带有var和function关键字的事先声明，并在内存中安排好。然后再从上到下执行js语句。预解析只会发生在通过var定义的变量和function上。*
-*只要是通过var定义的，不管是变量，还是函数，都是先赋值undefined，如果是变量，也不管变量有没有赋值，在预解析阶段，都是会被赋值为undefined。*
+*在当前作用域下,js运行之前，会把带有 var 和 function 关键字的事先声明，并在内存中安排好。然后再从上到下执行js语句。预解析只会发生在通过 var 定义的变量和 function 上。*
+*只要是通过 var 定义的，不管是变量，还是函数，都是先赋值 undefined，如果是变量，也不管变量有没有赋值，在预解析阶段，都是会被赋值为 undefined。*
 *我们运行函数的时候会生成一个新的私有作用域（每次执行都是新的，执行完成就销毁）这个作用域下我们可以理解为开辟了一个新的内存空间。在这个内存中我们也要执行预解析。当我们的函数执行完成后，这个内存或者作用域就会销毁*
-*如果在当前作用域下的一个变量没有预解析，就会向它的上一级去找，直到找到window，如果window下也没有定义，就会报错。所以，在函数内通过var定义的变量是局部变量，没有能过var 定义的变量是全局变量。*
+*如果在当前作用域下的一个变量没有预解析，就会向它的上一级去找，直到找到 window，如果 window 下也没有定义，就会报错。所以，在函数内通过 var 定义的变量是局部变量，没有能过 var 定义的变量是全局变量。*
 *预解析不会在同一个变量上重复的发生，也就是一个变量如果已经在当前作用域下预解析了，不会再重复解析。*
 ```js
 //   ====每个btn弹出的都是btns.length的值，原因：点击事件会放到队列里进行执行，主程序不会等待
@@ -233,8 +233,8 @@ let obj = {
 
 ### 7. 三点运算符
 1. rest(可变)参数
-   + 用来取代 arguments ，但比 arguments 灵活,arguments是伪数组，不具备数组的方法，而rest可变参数是真正的数组，具备数组的一切方法
-   + rest参数必须是最后部分的形参参数 Rest parameter must be last formal parameter
+   + 用来取代 arguments ，但比 arguments 灵活, arguments 是伪数组，不具备数组的方法，而 rest 可变参数是真正的数组，具备数组的一切方法
+   + rest 参数必须是最后部分的形参参数 Rest parameter must be last formal parameter
 ```js
     function foo(a, ...value) {
       console.log(arguments) //Arguments(4) [1, 2, 3, 4, callee: (...), Symbol(Symbol.iterator): ƒ]
@@ -295,7 +295,7 @@ point() // 不传入值时，默认x=0,y=0
 1. AJAX不是JavaScript的规范，Asynchronous JavaScript and XML，意思就是用JavaScript执行异步网络请求。
 2. AJAX请求是异步执行的，也就是说，要通过回调函数获得响应
 3. onreadystatechange:存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
-4. readyState存有 XMLHttpRequest 的状态，从 0 到 4 发生变化
+4. readyState 存有 XMLHttpRequest 的状态，从 0 到 4 发生变化
    + 0: 请求未初始化
    + 1: 服务器连接已建立
    + 2: 请求已接收
@@ -381,6 +381,25 @@ request.send();
    ```
    + 内置 Symbol 值：除了定义自己使用的 Symbol 值外，ES6 还提供 11 个内置的 Symbol 值，指向语言内部的使用方法
       * Symbol.iterator 属性指向对象的默认遍历器方法
+      ```js
+          // 对象的 Symbol.iterator 实现，指向遍历器对象
+        let obj = {
+          name: 'crystal',
+          age: 23
+        }
+        // for (let i of obj) { //报错！！
+        //   console.log(i)
+        // }
+        // 为对象人为的定义一个 iterator 接口
+        obj[Symbol.iterator] = function* test() {
+          yield 1
+          yield 2
+          yield 3
+        }
+        for (let i of obj) {
+          console.log(i)//1 2 3
+        }
+      ```
 
 ### 11. iterator 接口机制
 > iterator 是一种接口机制，为不同的数据结构提供统一的访问机制
@@ -459,3 +478,20 @@ request.send();
     console.log(MG.next('aaa')) //{value: "generator", done: false}
     console.log(MG.next()) //{value: undefined, done: true}
 ```
+
+### 13. async 函数(ES2017)
+> 真正意义上解决异步回调的问题，同步流程表达异步操作
+1. 本质：Generator 的语法糖
+2. 语法：
+```js
+async function foo(){
+  await 异步操作；
+  await 异步操作；
+}
+```
+3. 特点：
+   + 不需要像 Generator 调用 next 方法，遇到 await 等待，当前异步操作执行完就往下执行
+   + 返回的总是 Promise 对象，可以用 then 方法进行下一步操作
+   + async 取代 Generator 函数的 * 号，await 取代 Generator 的 yield
+   + 语义上更为明确，使用简单，经临床验证，暂时没有任何副作用及不良反应
+
