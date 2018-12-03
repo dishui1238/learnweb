@@ -152,7 +152,7 @@ var obj = {
       }
     }
 ```
-问题解决：1. 闭包，立即执行函数
+问题解决：1. 闭包，立即执行函数(function(){})()
 ```js
 let btns = document.getElementsByTagName('input')
     for (var i = 0; i < btns.length; i++) {
@@ -265,11 +265,12 @@ point() // 不传入值时，默认x=0,y=0
 ```
 
 ### 9. Promise 对象
-1. Promise 对象：代表了未来将要发生的事件(通常是一个异步操作)
+
+1. Promise 对象：所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
 2. 有了 Promise 对象可以将异步操作以同步的流程表达出来，避免层层嵌套的回调函数(回调地狱)
 3. ES6 的 Promise 是一个构造函数，用来生成 promise 实例
 4. 使用 Promise 基本步骤（2步）：
-   + 创建 Promise 对象
+   + 创建 Promise 对象：Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。
    ```js
    let promise = new Promise((resolve,reject)=>{
      // 初始化 promise 状态为 pending
@@ -281,14 +282,86 @@ point() // 不传入值时，默认x=0,y=0
      }
    })
    ```
-   + 调用 promise 的 then()
+   + 调用 promise 的 then()：Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数
    ```js
    promise.then(()=>{},()=>{})
    ```
 5. promise 对象的三个状态：
    + pending: 初始化状态
-   + fullfilled: 成功状态
+   + fulfilled: 成功状态
    + rejected: 失败状态
+6. Promise 缺点：首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，Promise内部抛出的错误，不会反应到外部。第三，当处于pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
+7. 如果调用resolve函数和reject函数时带有参数，那么它们的参数会被传递给回调函数。reject函数的参数通常是Error对象的实例，表示抛出的错误；resolve函数的参数除了正常的值以外，还可能是另一个 Promise 实例，比如像下面这样。
+```js
+const p1 = new Promise(function (resolve, reject) {
+  setTimeout(() => reject(new Error('fail')), 3000)
+})
+
+const p2 = new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(p1), 1000)
+})
+
+p2
+  .then(result => console.log(result))
+  .catch(error => console.log(error))
+// Error: fail
+```
+上面代码中，p1是一个 Promise，3 秒之后变为rejected。p2的状态在 1 秒之后改变，resolve方法返回的是p1。由于p2返回的是另一个 Promise，导致p2自己的状态无效了，由p1的状态决定p2的状态。所以，后面的then语句都变成针对后者（p1）。又过了 2 秒，p1变为rejected，导致触发catch方法指定的回调函数。
+*注意，调用resolve或reject并不会终结 Promise 的参数函数的执行。*
+```js
+new Promise((resolve, reject) => {
+  resolve(1);
+  console.log(2);
+}).then(r => {
+  console.log(r);
+});
+// 2
+// 1
+```
+上面代码中，调用resolve(1)以后，后面的console.log(2)还是会执行，并且会首先打印出来。这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。
+
+一般来说，调用resolve或reject以后，Promise 的使命就完成了，后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面。所以，最好在它们前面加上return语句，这样就不会有意外。
+```js
+new Promise((resolve, reject) => {
+  return resolve(1);
+  // 后面的语句不会执行
+  console.log(2);
+})
+```
+#### Promise.prototype.then() 
++ then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）
+#### Promise.prototype.catch()
+   + Promise.prototype.catch方法是.then(null, rejection)的别名，用于指定发生错误时的回调函数。
+   + Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。
+   + 一般来说，不要在then方法里面定义 Reject 状态的回调函数（即then的第二个参数），总是使用catch方法。
+   + catch方法返回的还是一个 Promise 对象
+   ```js
+   promise
+  .then(function(data) { //cb
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+  ```
+#### Promise.prototype.finally() 
+> finally方法用于指定不管 Promise 对象最后状态如何，都会执行的操作。该方法是 ES2018 引入标准的。
++ finally方法的回调函数不接受任何参数，这意味着没有办法知道，前面的 Promise 状态到底是fulfilled还是rejected。这表明，finally方法里面的操作，应该是与状态无关的，不依赖于 Promise 的执行结果。
+
+```js
+promise
+  .then(result => {···})
+  .catch(error => {···})
+  .finally(() => {···});
+```
+
+#### Promise.all()
++ Promise.all方法用于将多个 Promise 实例，包装成一个新的 Promise 实例,Promise.all方法接受一个数组作为参数
+```js
+const p = Promise.all([p1, p2, p3]);
+```
++ 只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。
++ 只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。
 
 > 补充：AJAX
 [廖雪峰AJAX](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499861493e7c35be5e0864769a2c06afb4754acc6000)
@@ -330,7 +403,7 @@ request.send();
 ```
 
 ### 10. Symbol 属性
-> ES6 中添加了一种原始数据类型 Symbol (已有的原始数据类型 String,Number,Boolean,null,undefined,Object)
+> ES6 中添加了一种原始数据类型 Symbol ，表示独一无二的值(已有的原始数据类型 String,Number,Boolean,null,undefined,Object)
 1. 产生原因：ES5 中对象的属性名都是字符串，容易造成重名，污染环境
 2. 特点：
    + Symbol 属性对应的值是唯一的值，解决命名冲突问题
@@ -362,6 +435,8 @@ request.send();
    ```
 3. 使用
    + 调用 Symbol 函数得到 symbol 值
+   + 作为属性名的 Symbol：由于每个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就会保证不会出现同名的属性 
+   + Symbol 值作为对象属性名时，不能用点运算符，Symbol 值必须放在方括号之中
    ```js
    let symbol = Symbol();
     let obj = {
@@ -371,7 +446,7 @@ request.send();
     obj[symbol] = 'hello';
     console.log(obj)
    ```
-   + 传参标识 
+   + 传参标识 ：Symbol函数可以接收一个字符串作为参数，表示对 symbol 实例的描述(比较容易区分)
    ```js
    // 可以传入唯一的标识以进行区分
     let obj4 = Symbol('4')
@@ -400,6 +475,7 @@ request.send();
           console.log(i)//1 2 3
         }
       ```
+*注意：Symbol函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。*
 
 ### 11. iterator 接口机制
 > iterator 是一种接口机制，为不同的数据结构提供统一的访问机制
