@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    let person = new Person('crystal', 23)
+    console.log(person)
+
+
+    // 定义一个人物的类
+    class Person2 {
+      // comstructor 是类的构造方法
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 类的一般方法(必须用对象的简写方式)
+      showName() {
+        console.log(this.name)
+      }
+    }
+    let person2 = new Person2('dishui', 23)
+    console.log(person2)
+    person2.showName()
+
+    // 子类
+    class StarPerson extends Person2 {
+      constructor(name, age, salary) {
+        super(name, age); //调用父类的构造方法
+        this.salary = salary;
+      }
+      // 父类的方法重写
+      showName(){
+        console.log('子类的方法')
+      }
+    }
+    let p1 = new StarPerson('ctystal', 23, 10000)
+    console.log(p1) //StarPerson {name: "ctystal", age: 23, salary: 10000}
+    p1.showName() //子类的方法
+  </script>
+</body>
+
+</html>

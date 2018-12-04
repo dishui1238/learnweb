@@ -571,3 +571,226 @@ async function foo(){
    + async 取代 Generator 函数的 * 号，await 取代 Generator 的 yield
    + 语义上更为明确，使用简单，经临床验证，暂时没有任何副作用及不良反应
 
+### 14. class类
++ 通过 class 定义类/实现类的继承
++ 在类中通过 constructor 定义构造函数
++ 通过 new 来创建类的实例
++ 通过 extends 来实现类的继承
++ 通过 super 来调用父类的构造方法
++ 重写从父类中继承的一般方法
+```js
+// 定义一个人物的类
+    class Person2 {
+      // comstructor 是类的构造方法
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 类的一般方法(必须用对象的简写方式)
+      showName() {
+        console.log(this.name)
+      }
+    }
+    let person2 = new Person2('dishui', 23)
+    console.log(person2)
+    person2.showName()
+
+    // 子类
+    class StarPerson extends Person2 {
+      constructor(name, age, salary) {
+        super(name, age); //调用父类的构造方法
+        this.salary = salary;
+      }
+      // 父类的方法重写
+      showName(){
+        console.log('子类的方法')
+      }
+    }
+    let p1 = new StarPerson('ctystal', 23, 10000)
+    console.log(p1) //StarPerson {name: "ctystal", age: 23, salary: 10000}
+    p1.showName() //子类的方法
+```
+
+### 15. 字符串、数组的扩展
+
+#### 字符串扩展
++ includes(str):判断是否包含指定的字符串
++ startsWith(str):判断是否以指定的字符串开头
++ endWith(str):判断是否以指定的字符串结尾
++ repeat(str):重复指定次数
+
+#### 数组扩展
++ 二进制与八进制数值表示法：二进制用 0b ,八进制用 0o
++ Number.isFinite(i):判断是否是有限大的数(Infinity表示无限大的数)
+`cosnole.log(Number.isFinite(Infinity)) //false`
++ Number.isNaN(i):判断是否是 NaN
++ Number.isInterger(i):判断是否是整数
+`console.log(Number.isInterger(123.0)) //true`
++ Number.parseInt(str):将字符串转换为对应的数值
+`console.log(Number.parseInt('123abc123')) //123`
+`console.log(Number.parseInt('a123abc123')) //NaN`
++ Math.trunc(i):直接去除小数部分
+
+#### 数组方法的扩展
++ Array.from(v):将伪数组对象或可遍历对象转换为真数组
++ Array.of(v1,v2,v3):将一系列值转换为数组
++ find(function(item,index,arr){return true}):找出第一个满足条件返回true的元素
+```js
+let arr = [1,2,3,4,5,6]
+let result = arr.find(function(item,index){
+  return item > 4
+})
+console.log(result)//5
+```
++ findIndedx(function(item,index,arr){return true})
+
+#### 对象方法的扩展
++ Object.is(v1,v2):判断两个数据是否完全相等(以字符串的形式判断)
+```js
+console.log(0==-0) // true
+console.log(NaN==NaN) //false   NaN不等于任何值
+console.log(Object.is(0,-0))  //false
+console.log(Object.is(NaN,NaN))  //true
+```
++ Object.assign(target,source1,source2..):将源对象的属性复制到目标对象上
+```js
+let obj = {}
+let obj1 = {username:'crystal',age:23}
+let obj2 = {sex:'female'}
+Object.assign(obj,obj1,obj2)
+console.log(obj) // {username: "crystal", age: 23, sex: "female"}
+```
++ 直接操作 `__proto__ `属性:`let obj2 = {}; obj2.__proto__ = obj1;`
+```js
+let obj = {};
+let obj1 = {money:30000}
+obj.__proto__ = obj1
+console.log(obj)
+console.log(obj.money)//30000
+```
+
+### 16. 深度克隆
++ 对 堆 和 栈 内存结构的理解：
+   + 基本的数据类型：保存在栈中，保存与复制的是值本身,即拷贝后会生成一份新的数据，修改拷贝后的数据不会影响原数据
+   + 引用类型：保存在堆中，保存与复制的是指向对象的一个指针，即拷贝后不会生成新的数据，而是拷贝的一份引用，修改拷贝后的数据会影响原来的数据
++ 拷贝数据的方法：
+   1. 直接赋值给一个变量--------------浅拷贝
+   2. Object.assign()---------------浅拷贝
+   3. Array.prototype.concat()------浅拷贝
+   4. Array.prototype.slice()-------浅拷贝
+   5. JSON.parse(JSON.stringfy())---深拷贝(深度克隆)，拷贝的数据里不能有函数，处理不了
++ 浅拷贝：拷贝的是引用，修改拷贝后的数据会影响原数据，使得原数据不安全
++ 深拷贝(深度克隆)：考本的时候生成新数据，修改拷贝后的数据不会影响原数据
+```js
+ // 不会影响原数据
+    let str = 'abcd'
+    let str2 = str
+    str2 = 'efg'
+    console.log(str)//abcd
+
+    // 影响原数据
+    let obj = {username:'dishui',age:23}
+    let obj1 = obj 
+    obj1.username = 'ctystal'
+    console.log(obj.username) //crystal
+
+    let arr = [1,3,4,5]
+    let arr1 = arr
+    arr1[0] = 'asd'
+    console.log(arr) //["asd", 3, 4, 5]
+```
+> 如何实现深度拷贝(克隆)？？拷贝的数据里不能有数据或数组，即使有对象或数组，可以继续遍历对象/数组，一直拿到是基本数据类型，然后进行复制，这时就是深度拷贝(克隆)
++ 如何判断数据类型：
+   - typeof 返回的数据类型有 String, Number, Blooean, Undefined, Object, Function
+   - Object.prototype.toString.call(obj).slice(8,-1)
+   ```js
+   let result = 'abcd'
+   result = null
+   result = [1,2]
+   console.log(Object.prototype.toString.call(result).slice(8,-1))
+   ```
+   - for in 循环(枚举对象拿到属性名/key,枚举数组拿到下标/index)
+
+```js
+//定义检测数据类型的功能函数
+function checkedType(target){
+  return Object.prototype.toString.call(target).slice(8,-1)
+}
+//实现深度克隆---对象/数组
+function clone(target){
+  // 判断拷贝的数据类型
+  // 初始化变量 result , 成为最终克隆的数据
+  let result,targetType = checkedType(target);
+  if(targetType === 'Object'){
+    result = {};
+  }else if(targetType === 'Array'){
+    result = [];
+  }else{
+     return target;
+  }
+  // 遍历目标数据
+  for(let i in target){
+    // 获取遍历数据结构的每一项值
+    let value = target[i];
+    // 判断目标结构里的每一项是否存在对象/数组
+    if(checkedType(value) === 'Object'||checkedType(value) === 'Array'){
+        // 继续遍历获取到的 value 值
+       result[i] = clone(value)
+    }else{//获取到的value值是基本数据类型或者是函数
+      result[i] = value
+    }
+  }
+  return result
+}
+
+//调用测试
+let arr = [1,2,3,{username:'crystal'}]
+let arrClone = clone(arr)
+arrClone[3].username = 'dishui'
+console.log(arr,arrClone)
+
+```
+
+### 17. set、map 容器
+1. set 容器：无序的、不可重复的多个 value 的集合体
+   + Set()
+   + Set(array)
+   + add(value)
+   + delete(value)
+   + has(value)
+   + clear()  //清空容器
+   + size     //value的个数
+```js
+let set = new Set([1,2,3,4,2,3,4])
+console.log(set)  //{1, 2, 3, 4}
+set.clear()
+```
+
+2. map 容器：无序的、key不重复的多个 key-value 的集合体
+   + Map()
+   + Map(array)
+   + set(key,value) //添加
+   + get(key)
+   + delete(key)
+   + has(key)
+   + clear
+   + size //键值对的个数
+```js
+let map = new Map([['username','dishui'],['age',23]])
+console.log(map)  //{"username" => "dishui", "age" => 23}
+
+map.set('sex','female')
+console.log(map.size) //3
+```
+
+### 18. for of 用法
++ 遍历数组
++ 遍历 Set
++ 遍历 Map
++ 遍历字符串
++ 遍历伪数组
+
+## ES7
+1. 指数运算符(幂)：**
+2. Array.prototype.includes(value):判断数组中是否包含指定的 value
+
