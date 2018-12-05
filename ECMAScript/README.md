@@ -143,7 +143,6 @@ var obj = {
 *如果在当前作用域下的一个变量没有预解析，就会向它的上一级去找，直到找到 window，如果 window 下也没有定义，就会报错。所以，在函数内通过 var 定义的变量是局部变量，没有能过 var 定义的变量是全局变量。*
 *预解析不会在同一个变量上重复的发生，也就是一个变量如果已经在当前作用域下预解析了，不会再重复解析。*
 ```js
-//   ====每个btn弹出的都是btns.length的值，原因：点击事件会放到队列里进行执行，主程序不会等待
     let btns = document.getElementsByTagName('input')
     for (var i = 0; i < btns.length; i++) {
       var btn = btns[i]
@@ -152,6 +151,8 @@ var obj = {
       }
     }
 ```
+> 上述代码中 变量i是var命令声明的，在全局范围内都有效，所以全局只有一个变量i ，值为 btns.length
+
 问题解决：1. 闭包，立即执行函数(function(){})()
 ```js
 let btns = document.getElementsByTagName('input')
@@ -174,11 +175,26 @@ let btns = document.getElementsByTagName('input')
       }
     }
 ```
+> 上述代码中 变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+```js
+for(let i=0;i<10;i++){
+  let i = 'abc'
+  console.log(i)
+  //abc
+  //abc
+  //abc 表明函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域。
+}
+```
+
+### 暂时性死区
++ 使用 let 声明变量使，只要变量在还没有声明完成前使用，就会报错
 
 ### 2. const 关键字
 1. 作用：定义一个常量
 2. 特点：
    + 不能被修改
+   + 声明后必须立即初始化
+   + 块级作用域内有效
    + 其他特点同 let
 3. 应用： 保存不用改变的数据
 
