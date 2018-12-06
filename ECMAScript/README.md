@@ -186,7 +186,7 @@ for(let i=0;i<10;i++){
 }
 ```
 
-### 暂时性死区
+#### 暂时性死区
 + 使用 let 声明变量使，只要变量在还没有声明完成前使用，就会报错
 
 ### 2. const 关键字
@@ -209,6 +209,7 @@ let obj = {name:'crystal',age:23}
 let {name,age} = obj
 console.log(name,age) // crystal 23 
 ```
+5. 如果解构不成功，变量的值就等于undefined。
 
 ### 4. 模板字符串
 1. 作用：简化字符串的拼接
