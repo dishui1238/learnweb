@@ -202,14 +202,19 @@ for(let i=0;i<10;i++){
 1. 理解：从对象或数组中提取数据，并赋值给变量(多个)
 2. 对象的解构赋值：`let {x,y} = {x:'crystal',y:23}`
 3. 数组的解构赋值：`let [x,y] = ['crystal',23]`
-4. 作用：给多个形参赋值
+4. 字符串的解构赋值：`const [a, b, c, d, e] = 'hello';`
+5. 作用：给多个形参赋值
 ```js
 let obj = {name:'crystal',age:23}
 
 let {name,age} = obj
 console.log(name,age) // crystal 23 
 ```
-5. 如果解构不成功，变量的值就等于undefined。
+6. 如果解构不成功，变量的值就等于undefined。
+```js
+let [foo] = []; //foo---undefined
+let [bar, foo] = [1]; //bar--1, foo--undefined
+```
 
 ### 4. 模板字符串
 1. 作用：简化字符串的拼接
